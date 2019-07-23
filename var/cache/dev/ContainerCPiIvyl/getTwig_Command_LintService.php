@@ -10,7 +10,7 @@ include_once $this->targetDirs[3].'/vendor/symfony/console/Command/Command.php';
 include_once $this->targetDirs[3].'/vendor/symfony/twig-bridge/Command/LintCommand.php';
 include_once $this->targetDirs[3].'/vendor/symfony/twig-bundle/Command/LintCommand.php';
 
-$this->privates['twig.command.lint'] = $instance = new \Symfony\Bundle\TwigBundle\Command\LintCommand(($this->services['twig'] ?? $this->load('getTwigService.php')));
+$this->privates['twig.command.lint'] = $instance = new \Symfony\Bundle\TwigBundle\Command\LintCommand(($this->services['twig'] ?? $this->getTwigService()));
 
 $instance->setName('lint:twig');
 

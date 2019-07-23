@@ -9,4 +9,4 @@ use Symfony\Component\DependencyInjection\Exception\RuntimeException;
 include_once $this->targetDirs[3].'/vendor/symfony/http-kernel/CacheWarmer/CacheWarmerInterface.php';
 include_once $this->targetDirs[3].'/vendor/symfony/twig-bundle/CacheWarmer/TemplateCacheCacheWarmer.php';
 
-return $this->privates['twig.cache_warmer'] = new \Symfony\Bundle\TwigBundle\CacheWarmer\TemplateCacheCacheWarmer(($this->privates['.service_locator.lSIKWsr'] ?? $this->load('get_ServiceLocator_LSIKWsrService.php'))->withContext('twig.cache_warmer', $this), NULL, []);
+return $this->privates['twig.cache_warmer'] = new \Symfony\Bundle\TwigBundle\CacheWarmer\TemplateCacheCacheWarmer(($this->privates['.service_locator.lSIKWsr'] ?? $this->load('get_ServiceLocator_LSIKWsrService.php'))->withContext('twig.cache_warmer', $this), NULL, [($this->targetDirs[3].'/vendor/symfony/twig-bridge/Resources/views/Form') => NULL]);

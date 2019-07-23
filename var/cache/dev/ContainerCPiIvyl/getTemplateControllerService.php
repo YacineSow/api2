@@ -8,4 +8,4 @@ use Symfony\Component\DependencyInjection\Exception\RuntimeException;
 
 include_once $this->targetDirs[3].'/vendor/symfony/framework-bundle/Controller/TemplateController.php';
 
-return $this->services['Symfony\\Bundle\\FrameworkBundle\\Controller\\TemplateController'] = new \Symfony\Bundle\FrameworkBundle\Controller\TemplateController(($this->services['twig'] ?? $this->load('getTwigService.php')), NULL);
+return $this->services['Symfony\\Bundle\\FrameworkBundle\\Controller\\TemplateController'] = new \Symfony\Bundle\FrameworkBundle\Controller\TemplateController(($this->services['twig'] ?? $this->getTwigService()), NULL);

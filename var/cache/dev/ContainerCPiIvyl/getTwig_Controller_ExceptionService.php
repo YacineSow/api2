@@ -8,4 +8,4 @@ use Symfony\Component\DependencyInjection\Exception\RuntimeException;
 
 include_once $this->targetDirs[3].'/vendor/symfony/twig-bundle/Controller/ExceptionController.php';
 
-return $this->services['twig.controller.exception'] = new \Symfony\Bundle\TwigBundle\Controller\ExceptionController(($this->services['twig'] ?? $this->load('getTwigService.php')), true);
+return $this->services['twig.controller.exception'] = new \Symfony\Bundle\TwigBundle\Controller\ExceptionController(($this->services['twig'] ?? $this->getTwigService()), true);

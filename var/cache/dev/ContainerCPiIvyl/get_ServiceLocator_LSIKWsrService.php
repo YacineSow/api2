@@ -7,7 +7,7 @@ use Symfony\Component\DependencyInjection\Exception\RuntimeException;
 // Returns the private '.service_locator.lSIKWsr' shared service.
 
 return $this->privates['.service_locator.lSIKWsr'] = new \Symfony\Component\DependencyInjection\Argument\ServiceLocator($this->getService, [
-    'twig' => ['services', 'twig', 'getTwigService.php', true],
+    'twig' => ['services', 'twig', 'getTwigService', false],
 ], [
     'twig' => 'Twig\\Environment',
 ]);
