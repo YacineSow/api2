@@ -31,7 +31,7 @@ class User
     /**
      * @ORM\Column(type="integer")
      */
-    private $tel;
+    private $telephone;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -44,11 +44,6 @@ class User
     private $adresse;
 
     /**
-     * @ORM\Column(type="integer")
-     */
-    private $cin;
-
-    /**
      * @ORM\Column(type="string", length=255)
      */
     private $identifiant;
@@ -57,6 +52,18 @@ class User
      * @ORM\Column(type="string", length=255)
      */
     private $pass;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\profil", inversedBy="users")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $profil;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\partenaire", inversedBy="users")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $partenaire;
 
     public function getId(): ?int
     {
@@ -87,14 +94,14 @@ class User
         return $this;
     }
 
-    public function getTel(): ?int
+    public function getTelephone(): ?int
     {
-        return $this->tel;
+        return $this->telephone;
     }
 
-    public function setTel(int $tel): self
+    public function setTelephone(int $telephone): self
     {
-        $this->tel = $tel;
+        $this->telephone = $telephone;
 
         return $this;
     }
@@ -123,18 +130,6 @@ class User
         return $this;
     }
 
-    public function getCin(): ?int
-    {
-        return $this->cin;
-    }
-
-    public function setCin(int $cin): self
-    {
-        $this->cin = $cin;
-
-        return $this;
-    }
-
     public function getIdentifiant(): ?string
     {
         return $this->identifiant;
@@ -155,6 +150,30 @@ class User
     public function setPass(string $pass): self
     {
         $this->pass = $pass;
+
+        return $this;
+    }
+
+    public function getProfil(): ?profil
+    {
+        return $this->profil;
+    }
+
+    public function setProfil(?profil $profil): self
+    {
+        $this->profil = $profil;
+
+        return $this;
+    }
+
+    public function getPartenaire(): ?partenaire
+    {
+        return $this->partenaire;
+    }
+
+    public function setPartenaire(?partenaire $partenaire): self
+    {
+        $this->partenaire = $partenaire;
 
         return $this;
     }
