@@ -218,37 +218,17 @@ class Utilisateur implements UserInterface
         return $this;
     }
 
-    // public function getPartenaire(): ?partenaire
-    // {
-    //     return $this->partenaire;
-    // }
-
-    // public function setPartenaire(?partenaire $partenaire): self
-    // {
-    //     $this->partenaire = $partenaire;
-
-    //     return $this;
-    // }
-
-   
-
-    /**
-     * Get the value of partenaire
-     */ 
-    public function getPartenaire()
+    public function getPartenaire(): ?partenaire
     {
         return $this->partenaire;
     }
 
-    /**
-     * Set the value of partenaire
-     *
-     * @return  self
-     */ 
-    public function setPartenaire(int $partenaire)
+    public function setPartenaire(?partenaire $partenaire): self
     {
         $this->partenaire = $partenaire;
 
         return $this;
     }
+
+  
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace ContainerIZzHEeV;
+namespace ContainerDZLUHed;
 
 use Symfony\Component\DependencyInjection\Argument\RewindableGenerator;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -93,7 +93,6 @@ class srcApp_KernelDevDebugContainer extends Container
             'filesystem' => 'getFilesystemService.php',
             'form.factory' => 'getForm_FactoryService.php',
             'form.type.file' => 'getForm_Type_FileService.php',
-            'fos_rest.view_handler' => 'getFosRest_ViewHandlerService.php',
             'lexik_jwt_authentication.check_config_command' => 'getLexikJwtAuthentication_CheckConfigCommandService.php',
             'lexik_jwt_authentication.encoder' => 'getLexikJwtAuthentication_EncoderService.php',
             'lexik_jwt_authentication.generate_token_command' => 'getLexikJwtAuthentication_GenerateTokenCommandService.php',
@@ -193,7 +192,6 @@ class srcApp_KernelDevDebugContainer extends Container
             include_once $this->targetDirs[3].'/vendor/symfony/serializer/Encoder/DecoderInterface.php';
             include_once $this->targetDirs[3].'/vendor/symfony/serializer/Encoder/ContextAwareDecoderInterface.php';
             include_once $this->targetDirs[3].'/vendor/symfony/serializer/Serializer.php';
-            include_once $this->targetDirs[3].'/vendor/friendsofsymfony/rest-bundle/Serializer/Normalizer/FormErrorNormalizer.php';
             include_once $this->targetDirs[3].'/vendor/symfony/serializer/Normalizer/CacheableSupportsMethodInterface.php';
             include_once $this->targetDirs[3].'/vendor/api-platform/core/src/Swagger/Serializer/ApiGatewayNormalizer.php';
             include_once $this->targetDirs[3].'/vendor/api-platform/core/src/Api/FilterLocatorTrait.php';
@@ -474,9 +472,6 @@ class srcApp_KernelDevDebugContainer extends Container
             include_once $this->targetDirs[3].'/vendor/symfony/expression-language/ExpressionLanguage.php';
             include_once $this->targetDirs[3].'/vendor/symfony/security-core/Authorization/ExpressionLanguage.php';
             include_once $this->targetDirs[3].'/vendor/api-platform/core/src/Security/ExpressionLanguage.php';
-            include_once $this->targetDirs[3].'/vendor/friendsofsymfony/rest-bundle/EventListener/BodyListener.php';
-            include_once $this->targetDirs[3].'/vendor/friendsofsymfony/rest-bundle/Decoder/DecoderProviderInterface.php';
-            include_once $this->targetDirs[3].'/vendor/friendsofsymfony/rest-bundle/Decoder/ContainerDecoderProvider.php';
             include_once $this->targetDirs[3].'/vendor/sensio/framework-extra-bundle/EventListener/ControllerListener.php';
             include_once $this->targetDirs[3].'/vendor/sensio/framework-extra-bundle/EventListener/ParamConverterListener.php';
             include_once $this->targetDirs[3].'/vendor/sensio/framework-extra-bundle/Request/ParamConverter/ParamConverterManager.php';
@@ -701,9 +696,6 @@ class srcApp_KernelDevDebugContainer extends Container
         $instance->addListener('kernel.request', [0 => function () {
             return ($this->privates['api_platform.security.listener.request.deny_access'] ?? $this->getApiPlatform_Security_Listener_Request_DenyAccessService());
         }, 1 => 'onKernelRequest'], 1);
-        $instance->addListener('kernel.request', [0 => function () {
-            return ($this->privates['fos_rest.body_listener'] ?? $this->getFosRest_BodyListenerService());
-        }, 1 => 'onKernelRequest'], 10);
         $instance->addListener('kernel.response', [0 => function () {
             return ($this->privates['response_listener'] ?? ($this->privates['response_listener'] = new \Symfony\Component\HttpKernel\EventListener\ResponseListener('UTF-8')));
         }, 1 => 'onKernelResponse'], 0);
@@ -747,9 +739,6 @@ class srcApp_KernelDevDebugContainer extends Container
             return ($this->privates['session_listener'] ?? $this->getSessionListenerService());
         }, 1 => 'onFinishRequest'], 0);
         $instance->addListener('kernel.request', [0 => function () {
-            return ($this->privates['debug.debug_handlers_listener'] ?? $this->getDebug_DebugHandlersListenerService());
-        }, 1 => 'configure'], 2048);
-        $instance->addListener('console.command', [0 => function () {
             return ($this->privates['debug.debug_handlers_listener'] ?? $this->getDebug_DebugHandlersListenerService());
         }, 1 => 'configure'], 2048);
         $instance->addListener('kernel.exception', [0 => function () {
@@ -920,11 +909,11 @@ class srcApp_KernelDevDebugContainer extends Container
         $n = ($this->privates['property_accessor'] ?? $this->getPropertyAccessorService());
         $o = new \Symfony\Component\Serializer\Normalizer\ObjectNormalizer($i, $j, $n, ($this->privates['property_info'] ?? $this->getPropertyInfoService()), new \Symfony\Component\Serializer\Mapping\ClassDiscriminatorFromClassMetadata($i), NULL, []);
 
-        return $this->services['serializer'] = new \Symfony\Component\Serializer\Serializer([0 => new \FOS\RestBundle\Serializer\Normalizer\FormErrorNormalizer(), 1 => $k, 2 => new \ApiPlatform\Core\Hydra\Serializer\ConstraintViolationListNormalizer($e, [], $j), 3 => new \ApiPlatform\Core\Problem\Serializer\ConstraintViolationListNormalizer([], $j), 4 => $k, 5 => new \ApiPlatform\Core\Hydra\Serializer\CollectionFiltersNormalizer(new \ApiPlatform\Core\Hydra\Serializer\PartialCollectionViewNormalizer(new \ApiPlatform\Core\Hydra\Serializer\CollectionNormalizer($l, $d, $m), 'page', 'pagination'), $a, $d, $h), 6 => new \ApiPlatform\Core\Hydra\Serializer\DocumentationNormalizer($a, $b, $c, $d, $f, $e, $g, $j), 7 => new \ApiPlatform\Core\Hydra\Serializer\EntrypointNormalizer($a, $m, $e), 8 => new \ApiPlatform\Core\Hydra\Serializer\ErrorNormalizer($e, true), 9 => new \ApiPlatform\Core\Problem\Serializer\ErrorNormalizer(true), 10 => new \Symfony\Component\Serializer\Normalizer\JsonSerializableNormalizer(), 11 => new \Symfony\Component\Serializer\Normalizer\DateTimeNormalizer(), 12 => new \Symfony\Component\Serializer\Normalizer\ConstraintViolationListNormalizer([], $j), 13 => new \Symfony\Component\Serializer\Normalizer\DateIntervalNormalizer(), 14 => new \Symfony\Component\Serializer\Normalizer\DataUriNormalizer(($this->privates['mime_types'] ?? $this->getMimeTypesService())), 15 => new \ApiPlatform\Core\JsonLd\Serializer\ItemNormalizer($a, $b, $c, $m, $d, $l, $n, $j, $i, [], new RewindableGenerator(function () {
+        return $this->services['serializer'] = new \Symfony\Component\Serializer\Serializer([0 => $k, 1 => new \ApiPlatform\Core\Hydra\Serializer\ConstraintViolationListNormalizer($e, [], $j), 2 => new \ApiPlatform\Core\Problem\Serializer\ConstraintViolationListNormalizer([], $j), 3 => $k, 4 => new \ApiPlatform\Core\Hydra\Serializer\CollectionFiltersNormalizer(new \ApiPlatform\Core\Hydra\Serializer\PartialCollectionViewNormalizer(new \ApiPlatform\Core\Hydra\Serializer\CollectionNormalizer($l, $d, $m), 'page', 'pagination'), $a, $d, $h), 5 => new \ApiPlatform\Core\Hydra\Serializer\DocumentationNormalizer($a, $b, $c, $d, $f, $e, $g, $j), 6 => new \ApiPlatform\Core\Hydra\Serializer\EntrypointNormalizer($a, $m, $e), 7 => new \ApiPlatform\Core\Hydra\Serializer\ErrorNormalizer($e, true), 8 => new \ApiPlatform\Core\Problem\Serializer\ErrorNormalizer(true), 9 => new \Symfony\Component\Serializer\Normalizer\JsonSerializableNormalizer(), 10 => new \Symfony\Component\Serializer\Normalizer\DateTimeNormalizer(), 11 => new \Symfony\Component\Serializer\Normalizer\ConstraintViolationListNormalizer([], $j), 12 => new \Symfony\Component\Serializer\Normalizer\DateIntervalNormalizer(), 13 => new \Symfony\Component\Serializer\Normalizer\DataUriNormalizer(($this->privates['mime_types'] ?? $this->getMimeTypesService())), 14 => new \ApiPlatform\Core\JsonLd\Serializer\ItemNormalizer($a, $b, $c, $m, $d, $l, $n, $j, $i, [], new RewindableGenerator(function () {
             return new \EmptyIterator();
-        }, 0), false), 16 => new \ApiPlatform\Core\Serializer\ItemNormalizer($b, $c, $m, $d, $n, $j, $i, ($this->privates['debug.api_platform.item_data_provider'] ?? $this->getDebug_ApiPlatform_ItemDataProviderService()), false, NULL, new RewindableGenerator(function () {
+        }, 0), false), 15 => new \ApiPlatform\Core\Serializer\ItemNormalizer($b, $c, $m, $d, $n, $j, $i, ($this->privates['debug.api_platform.item_data_provider'] ?? $this->getDebug_ApiPlatform_ItemDataProviderService()), false, NULL, new RewindableGenerator(function () {
             return new \EmptyIterator();
-        }, 0), $a, false), 17 => new \ApiPlatform\Core\JsonLd\Serializer\ObjectNormalizer($o, $m, $l), 18 => new \Symfony\Component\Serializer\Normalizer\ArrayDenormalizer(), 19 => $o], [0 => new \Symfony\Component\Serializer\Encoder\XmlEncoder(), 1 => new \Symfony\Component\Serializer\Encoder\JsonEncoder(), 2 => new \Symfony\Component\Serializer\Encoder\YamlEncoder(), 3 => new \Symfony\Component\Serializer\Encoder\CsvEncoder(), 4 => new \ApiPlatform\Core\Serializer\JsonEncoder('jsonld'), 5 => new \ApiPlatform\Core\Serializer\JsonEncoder('jsonproblem')]);
+        }, 0), $a, false), 16 => new \ApiPlatform\Core\JsonLd\Serializer\ObjectNormalizer($o, $m, $l), 17 => new \Symfony\Component\Serializer\Normalizer\ArrayDenormalizer(), 18 => $o], [0 => new \Symfony\Component\Serializer\Encoder\XmlEncoder(), 1 => new \Symfony\Component\Serializer\Encoder\JsonEncoder(), 2 => new \Symfony\Component\Serializer\Encoder\YamlEncoder(), 3 => new \Symfony\Component\Serializer\Encoder\CsvEncoder(), 4 => new \ApiPlatform\Core\Serializer\JsonEncoder('jsonld'), 5 => new \ApiPlatform\Core\Serializer\JsonEncoder('jsonproblem')]);
     }
 
     /**
@@ -1363,35 +1352,21 @@ class srcApp_KernelDevDebugContainer extends Container
     protected function getDebug_Security_FirewallService()
     {
         return $this->privates['debug.security.firewall'] = new \Symfony\Bundle\SecurityBundle\Debug\TraceableFirewallListener(new \Symfony\Bundle\SecurityBundle\Security\FirewallMap(new \Symfony\Component\DependencyInjection\Argument\ServiceLocator($this->getService, [
+            'security.firewall.map.context.api' => ['privates', 'security.firewall.map.context.api', 'getSecurity_Firewall_Map_Context_ApiService.php', true],
             'security.firewall.map.context.dev' => ['privates', 'security.firewall.map.context.dev', 'getSecurity_Firewall_Map_Context_DevService.php', true],
+            'security.firewall.map.context.login' => ['privates', 'security.firewall.map.context.login', 'getSecurity_Firewall_Map_Context_LoginService.php', true],
             'security.firewall.map.context.main' => ['privates', 'security.firewall.map.context.main', 'getSecurity_Firewall_Map_Context_MainService.php', true],
         ], [
+            'security.firewall.map.context.api' => '?',
             'security.firewall.map.context.dev' => '?',
+            'security.firewall.map.context.login' => '?',
             'security.firewall.map.context.main' => '?',
         ]), new RewindableGenerator(function () {
+            yield 'security.firewall.map.context.login' => ($this->privates['.security.request_matcher.HeUdK73'] ?? ($this->privates['.security.request_matcher.HeUdK73'] = new \Symfony\Component\HttpFoundation\RequestMatcher('^/api/login')));
+            yield 'security.firewall.map.context.api' => ($this->privates['.security.request_matcher.qmvANFU'] ?? ($this->privates['.security.request_matcher.qmvANFU'] = new \Symfony\Component\HttpFoundation\RequestMatcher('^/api/t')));
             yield 'security.firewall.map.context.dev' => ($this->privates['.security.request_matcher.Iy.T22O'] ?? ($this->privates['.security.request_matcher.Iy.T22O'] = new \Symfony\Component\HttpFoundation\RequestMatcher('^/(_(profiler|wdt)|css|images|js)/')));
             yield 'security.firewall.map.context.main' => NULL;
-        }, 2)), ($this->services['event_dispatcher'] ?? $this->getEventDispatcherService()), ($this->privates['security.logout_url_generator'] ?? $this->getSecurity_LogoutUrlGeneratorService()));
-    }
-
-    /**
-     * Gets the private 'fos_rest.body_listener' shared service.
-     *
-     * @return \FOS\RestBundle\EventListener\BodyListener
-     */
-    protected function getFosRest_BodyListenerService()
-    {
-        $this->privates['fos_rest.body_listener'] = $instance = new \FOS\RestBundle\EventListener\BodyListener(new \FOS\RestBundle\Decoder\ContainerDecoderProvider(new \Symfony\Component\DependencyInjection\Argument\ServiceLocator($this->getService, [
-            'fos_rest.decoder.json' => ['privates', 'fos_rest.decoder.json', 'getFosRest_Decoder_JsonService.php', true],
-            'fos_rest.decoder.xml' => ['privates', 'fos_rest.decoder.xml', 'getFosRest_Decoder_XmlService.php', true],
-        ], [
-            'fos_rest.decoder.json' => '?',
-            'fos_rest.decoder.xml' => '?',
-        ]), ['json' => 'fos_rest.decoder.json', 'xml' => 'fos_rest.decoder.xml']), false);
-
-        $instance->setDefaultFormat(NULL);
-
-        return $instance;
+        }, 4)), ($this->services['event_dispatcher'] ?? $this->getEventDispatcherService()), ($this->privates['security.logout_url_generator'] ?? $this->getSecurity_LogoutUrlGeneratorService()));
     }
 
     /**
@@ -1531,8 +1506,11 @@ class srcApp_KernelDevDebugContainer extends Container
     protected function getSecurity_Authentication_ManagerService()
     {
         $this->privates['security.authentication.manager'] = $instance = new \Symfony\Component\Security\Core\Authentication\AuthenticationProviderManager(new RewindableGenerator(function () {
-            yield 0 => ($this->privates['security.authentication.provider.anonymous.main'] ?? ($this->privates['security.authentication.provider.anonymous.main'] = new \Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider($this->getParameter('container.build_hash'))));
-        }, 1), true);
+            yield 0 => ($this->privates['security.authentication.provider.dao.login'] ?? $this->load('getSecurity_Authentication_Provider_Dao_LoginService.php'));
+            yield 1 => ($this->privates['security.authentication.provider.anonymous.login'] ?? ($this->privates['security.authentication.provider.anonymous.login'] = new \Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider($this->getParameter('container.build_hash'))));
+            yield 2 => ($this->privates['security.authentication.provider.guard.api'] ?? $this->load('getSecurity_Authentication_Provider_Guard_ApiService.php'));
+            yield 3 => ($this->privates['security.authentication.provider.anonymous.main'] ?? ($this->privates['security.authentication.provider.anonymous.main'] = new \Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider($this->getParameter('container.build_hash'))));
+        }, 4), true);
 
         $instance->setEventDispatcher(($this->services['event_dispatcher'] ?? $this->getEventDispatcherService()));
 
@@ -1782,10 +1760,6 @@ class srcApp_KernelDevDebugContainer extends Container
                     'path' => ($this->targetDirs[3].'/vendor/doctrine/doctrine-migrations-bundle'),
                     'namespace' => 'Doctrine\\Bundle\\MigrationsBundle',
                 ],
-                'FOSRestBundle' => [
-                    'path' => ($this->targetDirs[3].'/vendor/friendsofsymfony/rest-bundle'),
-                    'namespace' => 'FOS\\RestBundle',
-                ],
                 'WebServerBundle' => [
                     'path' => ($this->targetDirs[3].'/vendor/symfony/web-server-bundle'),
                     'namespace' => 'Symfony\\Bundle\\WebServerBundle',
@@ -1866,7 +1840,6 @@ class srcApp_KernelDevDebugContainer extends Container
                 'ApiPlatformBundle' => 'ApiPlatform\\Core\\Bridge\\Symfony\\Bundle\\ApiPlatformBundle',
                 'MakerBundle' => 'Symfony\\Bundle\\MakerBundle\\MakerBundle',
                 'DoctrineMigrationsBundle' => 'Doctrine\\Bundle\\MigrationsBundle\\DoctrineMigrationsBundle',
-                'FOSRestBundle' => 'FOS\\RestBundle\\FOSRestBundle',
                 'WebServerBundle' => 'Symfony\\Bundle\\WebServerBundle\\WebServerBundle',
                 'SensioFrameworkExtraBundle' => 'Sensio\\Bundle\\FrameworkExtraBundle\\SensioFrameworkExtraBundle',
                 'LexikJWTAuthenticationBundle' => 'Lexik\\Bundle\\JWTAuthenticationBundle\\LexikJWTAuthenticationBundle',

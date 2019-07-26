@@ -21,9 +21,6 @@ return $this->services['services_resetter'] = new \Symfony\Component\HttpKernel\
     if (isset($this->privates['form.type.entity'])) {
         yield 'form.type.entity' => ($this->privates['form.type.entity'] ?? null);
     }
-    if (isset($this->services['fos_rest.view_handler'])) {
-        yield 'fos_rest.view_handler.default' => ($this->services['fos_rest.view_handler'] ?? null);
-    }
 }, function () {
-    return 0 + (int) (isset($this->privates['form.choice_list_factory.cached'])) + (int) (isset($this->privates['debug.stopwatch'])) + (int) (isset($this->services['security.token_storage'])) + (int) (isset($this->privates['form.type.entity'])) + (int) (isset($this->services['fos_rest.view_handler']));
-}), ['form.choice_list_factory.cached' => 'reset', 'debug.stopwatch' => 'reset', 'security.token_storage' => 'setToken', 'form.type.entity' => 'reset', 'fos_rest.view_handler.default' => 'reset']);
+    return 0 + (int) (isset($this->privates['form.choice_list_factory.cached'])) + (int) (isset($this->privates['debug.stopwatch'])) + (int) (isset($this->services['security.token_storage'])) + (int) (isset($this->privates['form.type.entity']));
+}), ['form.choice_list_factory.cached' => 'reset', 'debug.stopwatch' => 'reset', 'security.token_storage' => 'setToken', 'form.type.entity' => 'reset']);

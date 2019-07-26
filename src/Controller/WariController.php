@@ -33,7 +33,10 @@ class WariController extends AbstractController
             $user->setMail($values->mail);
             $user->setAdresse($values->adresse);
             $user->setCni($values->cni);
-            $user->setPartenaire($values->partenaire);
+            
+            $repo=$this->getDoctrine()->getRepository(Partenaire::class);
+            $partenaires=$repo->find($values->partenaire);
+            $user->setPartenaire($partenaires);
 
 
 
@@ -54,6 +57,20 @@ class WariController extends AbstractController
         ];
         return new JsonResponse($data, 500);
     }
+/** 
+    * @Route(name="/login", path="/api/login_check" )
+    * @return JsonResponse
+    */
+   public function login() : JsonResponse
+   {
+       $user = $this->getUser();
+       return $this->json(array(
+        'username' => $user->getUsername(),
+        'roles' => $user->getRoles()
+       )
+           
+       );
+   }
 
 
 
