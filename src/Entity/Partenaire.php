@@ -28,7 +28,7 @@ class Partenaire
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $raisonsocial;
+    private $raisonSocial;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -41,25 +41,28 @@ class Partenaire
     private $adresse;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\adminwari", inversedBy="partenaires")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $adminwari;
-
-    /**
-     * @ORM\OneToMany(targetEntity="App\Entity\User", mappedBy="partenaire")
-     */
-    private $users;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\compte", inversedBy="partenaires")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\Column(type="bigint")
      */
     private $compte;
 
+    /**
+     * @ORM\Column(type="bigint")
+     */
+    private $solde;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Utilisateur", mappedBy="partenaire")
+     */
+    private $utilisateurs;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $statut;
+
     public function __construct()
     {
-        $this->users = new ArrayCollection();
+        $this->utilisateurs = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -79,14 +82,14 @@ class Partenaire
         return $this;
     }
 
-    public function getRaisonsocial(): ?string
+    public function getRaisonSocial(): ?string
     {
-        return $this->raisonsocial;
+        return $this->raisonSocial;
     }
 
-    public function setRaisonsocial(string $raisonsocial): self
+    public function setRaisonSocial(string $raisonSocial): self
     {
-        $this->raisonsocial = $raisonsocial;
+        $this->raisonSocial = $raisonSocial;
 
         return $this;
     }
@@ -115,57 +118,69 @@ class Partenaire
         return $this;
     }
 
-    public function getAdminwari(): ?adminwari
+    public function getCompte(): ?int
     {
-        return $this->adminwari;
+        return $this->compte;
     }
 
-    public function setAdminwari(?adminwari $adminwari): self
+    public function setCompte(int $compte): self
     {
-        $this->adminwari = $adminwari;
+        $this->compte = $compte;
+
+        return $this;
+    }
+
+    public function getSolde(): ?int
+    {
+        return $this->solde;
+    }
+
+    public function setSolde(int $solde): self
+    {
+        $this->solde = $solde;
 
         return $this;
     }
 
     /**
-     * @return Collection|User[]
+     * @return Collection|Utilisateur[]
      */
-    public function getUsers(): Collection
+    public function getUtilisateurs(): Collection
     {
-        return $this->users;
+        return $this->utilisateurs;
     }
 
-    public function addUser(User $user): self
+    public function addUtilisateur(Utilisateur $utilisateur): self
     {
-        if (!$this->users->contains($user)) {
-            $this->users[] = $user;
-            $user->setPartenaire($this);
+        if (!$this->utilisateurs->contains($utilisateur)) {
+            $this->utilisateurs[] = $utilisateur;
+            $utilisateur->setPartenaire($this);
         }
 
         return $this;
     }
 
-    public function removeUser(User $user): self
+    public function removeUtilisateur(Utilisateur $utilisateur): self
     {
-        if ($this->users->contains($user)) {
-            $this->users->removeElement($user);
+        if ($this->utilisateurs->contains($utilisateur)) {
+            $this->utilisateurs->removeElement($utilisateur);
             // set the owning side to null (unless already changed)
-            if ($user->getPartenaire() === $this) {
-                $user->setPartenaire(null);
+            if ($utilisateur->getPartenaire() === $this) {
+                $utilisateur->setPartenaire(null);
             }
         }
 
         return $this;
     }
 
-    public function getCompte(): ?compte
+    public function getStatut(): ?string
     {
-        return $this->compte;
+        return $this->statut;
     }
 
-    public function setCompte(?compte $compte): self
+    public function setStatut(string $statut): self
     {
-        $this->compte = $compte;
+        $this->statut = $statut;
 
         return $this;
     }

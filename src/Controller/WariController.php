@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Entity\User;
+use App\Entity\Partenaire;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -26,13 +26,15 @@ class WariController extends AbstractController
             $user = new Utilisateur();
             $user->setUsername($values->username);
             $user->setPassword($passwordEncoder->encodePassword($user, $values->password));
-            $user->setRoles($user->getRoles());
+            $user->setRoles(['ROLE_ADMIN']);
             $user->setPrenom($values->prenom);
             $user->setNom($values->nom);
             $user->setTelephone($values->telephone);
             $user->setMail($values->mail);
             $user->setAdresse($values->adresse);
             $user->setCni($values->cni);
+            $user->setPartenaire($values->partenaire);
+
 
 
 

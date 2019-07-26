@@ -3,11 +3,12 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Security\Core\User\UserInterface;
 use phpDocumentor\Reflection\Types\Integer;
-
+use ApiPlatform\Core\Annotation\ApiResource;
+use Symfony\Component\Security\Core\User\UserInterface;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UtilisateurRepository")
+ * @ApiResource()
  */
 class Utilisateur implements UserInterface
 {
@@ -63,6 +64,12 @@ class Utilisateur implements UserInterface
      * @ORM\Column(type="bigint")
      */
     private $cni;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\partenaire", inversedBy="utilisateurs")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $partenaire;
 
   
 
@@ -211,5 +218,37 @@ class Utilisateur implements UserInterface
         return $this;
     }
 
+    // public function getPartenaire(): ?partenaire
+    // {
+    //     return $this->partenaire;
+    // }
+
+    // public function setPartenaire(?partenaire $partenaire): self
+    // {
+    //     $this->partenaire = $partenaire;
+
+    //     return $this;
+    // }
+
    
+
+    /**
+     * Get the value of partenaire
+     */ 
+    public function getPartenaire()
+    {
+        return $this->partenaire;
+    }
+
+    /**
+     * Set the value of partenaire
+     *
+     * @return  self
+     */ 
+    public function setPartenaire(int $partenaire)
+    {
+        $this->partenaire = $partenaire;
+
+        return $this;
+    }
 }
