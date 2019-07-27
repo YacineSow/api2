@@ -13,6 +13,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+
 
 
 /**
@@ -54,11 +56,13 @@ class PartenaireController extends AbstractController
 
     /**
      * @Route("/partenaires", name="add_partenaire", methods={"POST"})
+     * @IsGranted("ROLE_SUPER_ADMIN")
      */
     public function new(Request $request, SerializerInterface $serializer, EntityManagerInterface $entityManager)
     {
         $partenaire = $serializer->deserialize($request->getContent(), Partenaire::class, 'json');
         $entityManager->persist($partenaire);
+
         $entityManager->flush();
         $data = [
             'status' => 201,

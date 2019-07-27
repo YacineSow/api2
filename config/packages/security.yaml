@@ -43,6 +43,6 @@ security:
     access_control:
         # - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }
-        # - { path: ^/supadmin, roles: SUPER_ADMIN }
+        # - { path: ^/api/partenaires, roles: ROLE_SUPER_ADMIN }
         - { path: ^/api/login, roles: IS_AUTHENTICATED_ANONYMOUS }
         - { path: ^/api, roles: IS_AUTHENTICATED_FULLY }

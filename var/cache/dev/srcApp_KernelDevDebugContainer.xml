@@ -1420,6 +1420,14 @@
         <argument>2048</argument>
       </call>
       <call method="addListener">
+        <argument>console.command</argument>
+        <argument type="collection">
+          <argument type="service" id="debug.debug_handlers_listener"/>
+          <argument>configure</argument>
+        </argument>
+        <argument>2048</argument>
+      </call>
+      <call method="addListener">
         <argument>kernel.exception</argument>
         <argument type="collection">
           <argument type="service" id="debug.debug_handlers_listener"/>
@@ -4214,7 +4222,7 @@
       <tag name="console.command" command="server:run"/>
       <argument>/home/mbacke/Documents/symfony/ApiWari/public</argument>
       <argument>dev</argument>
-      <argument>/home/mbacke/Documents/symfony/ApiWari/var/cache</argument>
+      <argument>/home/mbacke/Documents/symfony/ApiWari</argument>
       <call method="setName">
         <argument>server:run</argument>
       </call>
@@ -4223,21 +4231,21 @@
       <tag name="console.command" command="server:start"/>
       <argument>/home/mbacke/Documents/symfony/ApiWari/public</argument>
       <argument>dev</argument>
-      <argument>/home/mbacke/Documents/symfony/ApiWari/var/cache</argument>
+      <argument>/home/mbacke/Documents/symfony/ApiWari</argument>
       <call method="setName">
         <argument>server:start</argument>
       </call>
     </service>
     <service id="web_server.command.server_stop" class="Symfony\Bundle\WebServerBundle\Command\ServerStopCommand" public="false">
       <tag name="console.command" command="server:stop"/>
-      <argument>/home/mbacke/Documents/symfony/ApiWari/var/cache</argument>
+      <argument>/home/mbacke/Documents/symfony/ApiWari</argument>
       <call method="setName">
         <argument>server:stop</argument>
       </call>
     </service>
     <service id="web_server.command.server_status" class="Symfony\Bundle\WebServerBundle\Command\ServerStatusCommand" public="false">
       <tag name="console.command" command="server:status"/>
-      <argument>/home/mbacke/Documents/symfony/ApiWari/var/cache</argument>
+      <argument>/home/mbacke/Documents/symfony/ApiWari</argument>
       <call method="setName">
         <argument>server:status</argument>
       </call>
