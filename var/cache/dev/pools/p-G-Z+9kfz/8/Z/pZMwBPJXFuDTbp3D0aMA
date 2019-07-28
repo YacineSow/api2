@@ -8,10 +8,15 @@
         [
             'Symfony\\Component\\Routing\\Annotation\\Route' => [
                 'path' => [
-                    '/api/login_check',
+                    '/login',
                 ],
                 'name' => [
-                    '/login',
+                    'login',
+                ],
+                'methods' => [
+                    [
+                        'POST',
+                    ],
                 ],
             ],
         ],

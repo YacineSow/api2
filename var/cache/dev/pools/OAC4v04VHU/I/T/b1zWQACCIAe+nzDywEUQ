@@ -41,7 +41,7 @@
                     1 => false,
                 ],
                 'class' => [
-                    1 => 'App\\Entity\\partenaire',
+                    1 => 'App\\Entity\\Partenaire',
                 ],
                 'collection' => [
                     1 => false,

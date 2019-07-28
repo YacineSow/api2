@@ -9,7 +9,7 @@
         [
             'stdClass' => [
                 'targetEntity' => [
-                    'App\\Entity\\partenaire',
+                    'App\\Entity\\Partenaire',
                 ],
                 'inversedBy' => [
                     'utilisateurs',

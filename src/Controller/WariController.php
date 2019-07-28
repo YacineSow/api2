@@ -20,6 +20,8 @@ class WariController extends AbstractController
 {
     /**
      * @Route("/register", name="register", methods={"POST"})
+        * @IsGranted("ROLE_SUPER_ADMIN")
+
      */
     public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder, EntityManagerInterface $entityManager)
     {
@@ -59,20 +61,19 @@ class WariController extends AbstractController
         ];
         return new JsonResponse($data, 500);
     }
-/** 
-    * @Route(name="/login", path="/api/login_check" )
-    * @return JsonResponse
-    */
-   public function login() : JsonResponse
-   {
-       $user = $this->getUser();
-       return $this->json(array(
-        'username' => $user->getUsername(),
-        'roles' => $user->getRoles()
-       )
-           
-       );
-   }
+
+
+    /**
+     * @Route("/login", name="login", methods={"POST"})
+     */
+    public function login(Request $request)
+    {
+        $user = $this->getUser();
+        return $this->json([
+            'username' => $user->getUsername(),
+            'roles' => $user->getRoles()
+        ]);
+    }
 
 
 

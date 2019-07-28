@@ -3,7 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use App\Entity\partenaire;
+use App\Entity\Partenaire;
 use phpDocumentor\Reflection\Types\Integer;
 use ApiPlatform\Core\Annotation\ApiResource;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -67,7 +67,7 @@ class Utilisateur implements UserInterface
     private $cni;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\partenaire", inversedBy="utilisateurs")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Partenaire", inversedBy="utilisateurs")
      * @ORM\JoinColumn(nullable=false)
      */
     private $partenaire;
