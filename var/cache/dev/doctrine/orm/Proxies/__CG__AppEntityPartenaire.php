@@ -64,10 +64,10 @@ class Partenaire extends \App\Entity\Partenaire implements \Doctrine\ORM\Proxy\P
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', '' . "\0" . 'App\\Entity\\Partenaire' . "\0" . 'id', '' . "\0" . 'App\\Entity\\Partenaire' . "\0" . 'entreprise', '' . "\0" . 'App\\Entity\\Partenaire' . "\0" . 'raisonSocial', '' . "\0" . 'App\\Entity\\Partenaire' . "\0" . 'ninea', '' . "\0" . 'App\\Entity\\Partenaire' . "\0" . 'adresse', '' . "\0" . 'App\\Entity\\Partenaire' . "\0" . 'compte', '' . "\0" . 'App\\Entity\\Partenaire' . "\0" . 'solde', '' . "\0" . 'App\\Entity\\Partenaire' . "\0" . 'utilisateurs', '' . "\0" . 'App\\Entity\\Partenaire' . "\0" . 'statut'];
+            return ['__isInitialized__', '' . "\0" . 'App\\Entity\\Partenaire' . "\0" . 'id', '' . "\0" . 'App\\Entity\\Partenaire' . "\0" . 'entreprise', '' . "\0" . 'App\\Entity\\Partenaire' . "\0" . 'raisonSocial', '' . "\0" . 'App\\Entity\\Partenaire' . "\0" . 'ninea', '' . "\0" . 'App\\Entity\\Partenaire' . "\0" . 'adresse', '' . "\0" . 'App\\Entity\\Partenaire' . "\0" . 'compte', '' . "\0" . 'App\\Entity\\Partenaire' . "\0" . 'solde', '' . "\0" . 'App\\Entity\\Partenaire' . "\0" . 'utilisateurs', '' . "\0" . 'App\\Entity\\Partenaire' . "\0" . 'statut', '' . "\0" . 'App\\Entity\\Partenaire' . "\0" . 'depots'];
         }
 
-        return ['__isInitialized__', '' . "\0" . 'App\\Entity\\Partenaire' . "\0" . 'id', '' . "\0" . 'App\\Entity\\Partenaire' . "\0" . 'entreprise', '' . "\0" . 'App\\Entity\\Partenaire' . "\0" . 'raisonSocial', '' . "\0" . 'App\\Entity\\Partenaire' . "\0" . 'ninea', '' . "\0" . 'App\\Entity\\Partenaire' . "\0" . 'adresse', '' . "\0" . 'App\\Entity\\Partenaire' . "\0" . 'compte', '' . "\0" . 'App\\Entity\\Partenaire' . "\0" . 'solde', '' . "\0" . 'App\\Entity\\Partenaire' . "\0" . 'utilisateurs', '' . "\0" . 'App\\Entity\\Partenaire' . "\0" . 'statut'];
+        return ['__isInitialized__', '' . "\0" . 'App\\Entity\\Partenaire' . "\0" . 'id', '' . "\0" . 'App\\Entity\\Partenaire' . "\0" . 'entreprise', '' . "\0" . 'App\\Entity\\Partenaire' . "\0" . 'raisonSocial', '' . "\0" . 'App\\Entity\\Partenaire' . "\0" . 'ninea', '' . "\0" . 'App\\Entity\\Partenaire' . "\0" . 'adresse', '' . "\0" . 'App\\Entity\\Partenaire' . "\0" . 'compte', '' . "\0" . 'App\\Entity\\Partenaire' . "\0" . 'solde', '' . "\0" . 'App\\Entity\\Partenaire' . "\0" . 'utilisateurs', '' . "\0" . 'App\\Entity\\Partenaire' . "\0" . 'statut', '' . "\0" . 'App\\Entity\\Partenaire' . "\0" . 'depots'];
     }
 
     /**
@@ -373,6 +373,39 @@ class Partenaire extends \App\Entity\Partenaire implements \Doctrine\ORM\Proxy\P
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setStatut', [$statut]);
 
         return parent::setStatut($statut);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getDepots(): \Doctrine\Common\Collections\Collection
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getDepots', []);
+
+        return parent::getDepots();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function addDepot(\App\Entity\Depot $depot): \App\Entity\Partenaire
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'addDepot', [$depot]);
+
+        return parent::addDepot($depot);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function removeDepot(\App\Entity\Depot $depot): \App\Entity\Partenaire
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'removeDepot', [$depot]);
+
+        return parent::removeDepot($depot);
     }
 
 }

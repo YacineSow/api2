@@ -98,6 +98,6 @@ class PartenaireController extends AbstractController
         return new JsonResponse($data);
     }
 
-     
 
+   
 }

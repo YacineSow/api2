@@ -20,8 +20,9 @@ class WariController extends AbstractController
 {
     /**
      * @Route("/register", name="register", methods={"POST"})
-        * @IsGranted("ROLE_SUPER_ADMIN")
+        * @IsGranted("ROLE_ADMIN")
 
+        
      */
     public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder, EntityManagerInterface $entityManager)
     {
