@@ -10,9 +10,8 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Validator\Constraints\DateTime;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-/**
- * @Route("/api")
- */
+
+
 class TransactionController extends AbstractController
 {
     /**
@@ -27,7 +26,6 @@ class TransactionController extends AbstractController
 
      /**
      * @Route("/depots", name="add_depot", methods={"POST"})
-     * @IsGranted("ROLE_ADMIN")
      */
     public function addDepot (Request $request,  EntityManagerInterface $entityManager)
     {
@@ -40,8 +38,11 @@ class TransactionController extends AbstractController
             $repo=$this->getDoctrine()->getRepository(Partenaire::class);
             $partenaires=$repo->find($values->idPartenaire);
             $depot->setIdPartenaire($partenaires);
+
             //incrementant du solde du partenaire du montant du depot
             $partenaires->setSolde($partenaires->getSolde()+$values->montant);
+
+
             //enregistrement au niveau du partenaire
             $entityManager->persist($partenaires);
 

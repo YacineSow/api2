@@ -15,9 +15,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 
-/**
- * @Route("/api")
- */
+
 class PartenaireController extends AbstractController
 {
     /**
@@ -34,27 +32,9 @@ class PartenaireController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/partenaires/{page<\d+>?1}", name="list_partenaire", methods={"GET"})
-     */
-    public function index(Request $request, PartenaireRepository $partenaireRepository, SerializerInterface $serializer)
-    {
-        $page = $request->query->get('page');
-        if(is_null($page) || $page < 1) {
-            $page = 1;
-        }
-        $partenaires = $partenaireRepository->findAllPartenaires($page, getenv('LIMIT'));
-        $data = $serializer->serialize($partenaires, 'json', [
-            'groups' => ['list']
-        ]);
-        return new Response($data, 200, [
-            'Content-Type' => 'application/json'
-        ]);
-    }
-
+   
     /**
      * @Route("/partenaires", name="add_partenaire", methods={"POST"})
-     * @IsGranted("ROLE_SUPER_ADMIN")
      */
     public function new(Request $request, SerializerInterface $serializer, EntityManagerInterface $entityManager)
     {

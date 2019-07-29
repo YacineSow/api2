@@ -13,13 +13,6 @@ namespace PackageVersions;
 final class Versions
 {
     public const ROOT_PACKAGE_NAME = '__root__';
-    /**
-     * Array of all available composer packages.
-     * Dont read this array from your calling code, but use the \PackageVersions\Versions::getVersion() method instead.
-     *
-     * @var array<string, string>
-     * @internal
-     */
     public const VERSIONS          = array (
   'api-platform/api-pack' => 'v1.2.0@9e3e7421415c747e676778f211434674324dcfa9',
   'api-platform/core' => 'v2.4.5@e056f5d9248588f228c88fb34f8ae2312fbb6387',
@@ -41,14 +34,13 @@ final class Versions
   'doctrine/reflection' => 'v1.0.0@02538d3f95e88eb397a5f86274deb2c6175c2ab6',
   'fig/link-util' => '1.0.0@1a07821801a148be4add11ab0603e4af55a72fac',
   'friendsofsymfony/rest-bundle' => '2.5.0@a5fc73b84bdb2f0fdf58a717b322ceb6997f7bf3',
-  'friendsofsymfony/user-bundle' => 'v2.1.2@1049935edd24ec305cc6cfde1875372fa9600446',
   'jdorn/sql-formatter' => 'v1.2.17@64990d96e0959dff8e059dfcdc1af130728d92bc',
   'lcobucci/jwt' => '3.3.1@a11ec5f4b4d75d1fcd04e133dede4c317aac9e18',
   'lexik/jwt-authentication-bundle' => 'v2.6.3@c4c6b54acf5388c621d3e917c9cb15262c0501cf',
   'namshi/jose' => '7.2.3@89a24d7eb3040e285dd5925fcad992378b82bcff',
   'nelmio/cors-bundle' => '1.5.6@10a24c10f242440211ed31075e74f81661c690d9',
   'nikic/php-parser' => 'v4.2.2@1bd73cc04c3843ad8d6b0bfc0956026a151fc420',
-  'ocramius/package-versions' => '1.5.1@1d32342b8c1eb27353c8887c366147b4c2da673c',
+  'ocramius/package-versions' => '1.4.0@a4d4b60d0e60da2487bd21a2c6ac089f85570dbb',
   'ocramius/proxy-manager' => '2.2.2@14b137b06b0f911944132df9d51e445a35920ab1',
   'phpdocumentor/reflection-common' => '1.0.1@21bdeb5f65d7ebf9f43b1b25d404f87deab5bfb6',
   'phpdocumentor/reflection-docblock' => '4.3.1@bdd9f737ebc2a01c06ea7ff4308ec6697db9b53c',
@@ -82,6 +74,7 @@ final class Versions
   'symfony/maker-bundle' => 'v1.12.0@201d0e050dca336c44f93657ce1f34f3b3868432',
   'symfony/mime' => 'v4.3.2@ec2c5565de60e03f33d4296a655e3273f0ad1f8b',
   'symfony/options-resolver' => 'v4.3.2@40762ead607c8f792ee4516881369ffa553fee6f',
+  'symfony/phpunit-bridge' => 'v4.3.3@5a7b67f3c407ad8199cedb10f71a36ab5ccd44ac',
   'symfony/polyfill-intl-icu' => 'v1.11.0@999878a3a09d73cae157b0cf89bb6fb2cc073057',
   'symfony/polyfill-intl-idn' => 'v1.11.0@c766e95bec706cdd89903b1eda8afab7d7a6b7af',
   'symfony/polyfill-mbstring' => 'v1.11.0@fe5e94c604826c35a32fa832f35bd036b6799609',
@@ -113,18 +106,20 @@ final class Versions
   'willdurand/negotiation' => 'v2.3.1@03436ededa67c6e83b9b12defac15384cb399dc9',
   'zendframework/zend-code' => '3.3.1@c21db169075c6ec4b342149f446e7b7b724f95eb',
   'zendframework/zend-eventmanager' => '3.2.1@a5e2583a211f73604691586b8406ff7296a946dd',
-  'symfony/browser-kit' => 'v4.3.2@a29dd02a1f3f81b9a15c7730cc3226718ddb55ca',
-  'symfony/css-selector' => 'v4.3.2@105c98bb0c5d8635bea056135304bd8edcc42b4d',
+  'squizlabs/php_codesniffer' => '3.4.2@b8a7362af1cc1aadb5bd36c3defc4dda2cf5f0a8',
+  'symfony/browser-kit' => 'v4.3.3@a29dd02a1f3f81b9a15c7730cc3226718ddb55ca',
+  'symfony/css-selector' => 'v4.3.3@105c98bb0c5d8635bea056135304bd8edcc42b4d',
   'symfony/dom-crawler' => 'v4.3.2@291397232a2eefb3347eaab9170409981eaad0e2',
   'symfony/process' => 'v4.3.2@856d35814cf287480465bb7a6c413bb7f5f5e69c',
-  'symfony/web-server-bundle' => 'v4.3.2@a5391b6a4ac78d518dd3f0ee5f40bcc9a7ee6fe7',
-  'paragonie/random_compat' => '2.*@f475c450a1cbdecb4a53dd9f083388e103861afe',
-  'symfony/polyfill-ctype' => '*@f475c450a1cbdecb4a53dd9f083388e103861afe',
-  'symfony/polyfill-iconv' => '*@f475c450a1cbdecb4a53dd9f083388e103861afe',
-  'symfony/polyfill-php71' => '*@f475c450a1cbdecb4a53dd9f083388e103861afe',
-  'symfony/polyfill-php70' => '*@f475c450a1cbdecb4a53dd9f083388e103861afe',
-  'symfony/polyfill-php56' => '*@f475c450a1cbdecb4a53dd9f083388e103861afe',
-  '__root__' => 'dev-master@f475c450a1cbdecb4a53dd9f083388e103861afe',
+  'symfony/test-pack' => 'v1.0.6@ff87e800a67d06c423389f77b8209bc9dc469def',
+  'symfony/web-server-bundle' => 'v4.3.3@a5391b6a4ac78d518dd3f0ee5f40bcc9a7ee6fe7',
+  'paragonie/random_compat' => '2.*@d9dfa3793836ac158baa0ce02ec0868307a1e829',
+  'symfony/polyfill-ctype' => '*@d9dfa3793836ac158baa0ce02ec0868307a1e829',
+  'symfony/polyfill-iconv' => '*@d9dfa3793836ac158baa0ce02ec0868307a1e829',
+  'symfony/polyfill-php71' => '*@d9dfa3793836ac158baa0ce02ec0868307a1e829',
+  'symfony/polyfill-php70' => '*@d9dfa3793836ac158baa0ce02ec0868307a1e829',
+  'symfony/polyfill-php56' => '*@d9dfa3793836ac158baa0ce02ec0868307a1e829',
+  '__root__' => 'dev-master@d9dfa3793836ac158baa0ce02ec0868307a1e829',
 );
 
     private function __construct()
@@ -133,8 +128,6 @@ final class Versions
 
     /**
      * @throws \OutOfBoundsException If a version cannot be located.
-     *
-     * @psalm-param key-of<self::VERSIONS> $packageName
      */
     public static function getVersion(string $packageName) : string
     {
@@ -143,7 +136,7 @@ final class Versions
         }
 
         throw new \OutOfBoundsException(
-            'Required package "' . $packageName . '" is not installed: check your ./vendor/composer/installed.json and/or ./composer.lock files'
+            'Required package "' . $packageName . '" is not installed: cannot detect its version'
         );
     }
 }
