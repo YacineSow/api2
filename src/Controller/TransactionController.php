@@ -36,12 +36,16 @@ class TransactionController extends AbstractController
             $depot = new Depot();
             $depot->setMontant($values->montant);
             $depot->setDateDepot(new \DateTime());
-            
+            //recuperation de l'id du partenaire
             $repo=$this->getDoctrine()->getRepository(Partenaire::class);
             $partenaires=$repo->find($values->idPartenaire);
             $depot->setIdPartenaire($partenaires);
+            //incrementant du solde du partenaire du montant du depot
             $partenaires->setSolde($partenaires->getSolde()+$values->montant);
+            //enregistrement au niveau du partenaire
             $entityManager->persist($partenaires);
+
+            //enregistrement au niveau du depot
             $entityManager->persist($depot);
             $entityManager->flush();
 
