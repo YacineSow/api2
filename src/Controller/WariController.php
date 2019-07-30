@@ -23,10 +23,6 @@ class WariController extends AbstractController
 {
     /**
      * @Route("/register", name="register", methods={"POST"})
-<<<<<<< HEAD
-        * @IsGranted("ROLE_ADMIN") 
-=======
->>>>>>> 7a5f979830cc0eb0c770d812997e35b9080c1d4c
      */
     public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder, EntityManagerInterface $entityManager)
     {
@@ -55,24 +51,20 @@ class WariController extends AbstractController
             $user->setAdresse($values->adresse);
             $user->setCni($values->cni);
             $user->setStatut($values->statut);
-<<<<<<< HEAD
-=======
-
->>>>>>> 7a5f979830cc0eb0c770d812997e35b9080c1d4c
             
 
             $repo=$this->getDoctrine()->getRepository(Partenaire::class);
             $partenaires=$repo->find($values->partenaire);
             $user->setPartenaire($partenaires);
-            $profil=$values->profil;
+     
 
 
             $entityManager->persist($user);
             $entityManager->flush();
 
             $data = [
-                'status' => 201,
-                'message' => 'L\'utilisateur a été créé'
+                'status1' => 201,
+                'message1' => 'L\'utilisateur a été créé'
             ];
 
             return new JsonResponse($data, 201);
