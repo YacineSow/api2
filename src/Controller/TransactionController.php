@@ -11,6 +11,9 @@ use Symfony\Component\Validator\Constraints\DateTime;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
+/**
+ * @Route("/api")
+ */
 
 class TransactionController extends AbstractController
 {
@@ -26,6 +29,7 @@ class TransactionController extends AbstractController
 
      /**
      * @Route("/depots", name="add_depot", methods={"POST"})
+
      */
     public function addDepot (Request $request,  EntityManagerInterface $entityManager)
     {

@@ -20,7 +20,6 @@ class WariController extends AbstractController
 {
     /**
      * @Route("/register", name="register", methods={"POST"})
-     * @IsGranted("ROLE_ADMIN")
      */
     public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder, EntityManagerInterface $entityManager)
     {
@@ -36,6 +35,8 @@ class WariController extends AbstractController
             $user->setMail($values->mail);
             $user->setAdresse($values->adresse);
             $user->setCni($values->cni);
+            $user->setStatut($values->statut);
+
             
             $repo=$this->getDoctrine()->getRepository(Partenaire::class);
             $partenaires=$repo->find($values->partenaire);

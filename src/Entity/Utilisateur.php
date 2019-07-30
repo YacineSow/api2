@@ -72,6 +72,11 @@ class Utilisateur implements UserInterface
      */
     private $partenaire;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $statut;
+
   
 
     public function getId(): ?int
@@ -227,6 +232,18 @@ class Utilisateur implements UserInterface
     public function setPartenaire(?partenaire $partenaire): self
     {
         $this->partenaire = $partenaire;
+
+        return $this;
+    }
+
+    public function getStatut(): ?string
+    {
+        return $this->statut;
+    }
+
+    public function setStatut(?string $statut): self
+    {
+        $this->statut = $statut;
 
         return $this;
     }

@@ -1430,6 +1430,7 @@
         <argument key="security.authentication.guard_handler" type="service" id="security.authentication.guard_handler" on-invalid="ignore_uninitialized"/>
         <argument key="security.authentication.listener.anonymous" type="service" id="security.authentication.listener.anonymous" on-invalid="ignore_uninitialized"/>
         <argument key="security.authentication.listener.anonymous.api" type="service" id="security.authentication.listener.anonymous.api" on-invalid="ignore_uninitialized"/>
+        <argument key="security.authentication.listener.basic.api" type="service" id="security.authentication.listener.basic.api" on-invalid="ignore_uninitialized"/>
         <argument key="security.authentication.listener.guard.api" type="service" id="security.authentication.listener.guard.api" on-invalid="ignore_uninitialized"/>
         <argument key="security.authentication.listener.json.api" type="service" id="security.authentication.listener.json.api" on-invalid="ignore_uninitialized"/>
         <argument key="security.authentication.manager" type="service" id="security.authentication.manager" on-invalid="ignore_uninitialized"/>
@@ -3083,16 +3084,30 @@
     </service>
     <service id="security.access_map" class="Symfony\Component\Security\Http\AccessMap" public="false">
       <call method="add">
-        <argument type="service" id=".security.request_matcher.Ud1TEPV"/>
+        <argument type="service" id=".security.request_matcher.RHM.hIp"/>
         <argument type="collection">
-          <argument>IS_AUTHENTICATED_ANONYMOUSLY</argument>
+          <argument>ROLE_ADMIN</argument>
         </argument>
         <argument>null</argument>
       </call>
       <call method="add">
-        <argument type="service" id=".security.request_matcher.cRNYaJ1"/>
+        <argument type="service" id=".security.request_matcher.RHM.hIp"/>
         <argument type="collection">
-          <argument>IS_AUTHENTICATED_FULLY</argument>
+          <argument>ROLE_SUPER_ADMIN</argument>
+        </argument>
+        <argument>null</argument>
+      </call>
+      <call method="add">
+        <argument type="service" id=".security.request_matcher.S7z3ELY"/>
+        <argument type="collection">
+          <argument>ROLE_ADMIN</argument>
+        </argument>
+        <argument>null</argument>
+      </call>
+      <call method="add">
+        <argument type="service" id=".security.request_matcher.S7z3ELY"/>
+        <argument type="collection">
+          <argument>ROLE_USER</argument>
         </argument>
         <argument>null</argument>
       </call>
@@ -3451,6 +3466,7 @@
       <argument type="collection">
         <argument>guard</argument>
         <argument>json_login</argument>
+        <argument>http_basic</argument>
         <argument>anonymous</argument>
       </argument>
       <argument>null</argument>
@@ -3513,6 +3529,16 @@
         <argument type="service" id="security.authentication.session_strategy_noop"/>
       </call>
     </service>
+    <service id="security.authentication.listener.basic.api" class="Symfony\Component\Security\Http\Firewall\BasicAuthenticationListener" public="false">
+      <argument type="service" id="security.token_storage"/>
+      <argument type="service" id="security.authentication.manager"/>
+      <argument>api</argument>
+      <argument type="service" id="lexik_jwt_authentication.security.guard.jwt_token_authenticator"/>
+      <argument type="service" id="logger" on-invalid="null"/>
+      <call method="setSessionAuthenticationStrategy">
+        <argument type="service" id="security.authentication.session_strategy_noop"/>
+      </call>
+    </service>
     <service id="security.authentication.listener.anonymous.api" class="Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener" public="false">
       <argument type="service" id="security.token_storage"/>
       <argument>%container.build_hash%</argument>
@@ -3538,6 +3564,7 @@
         <argument type="service" id="security.channel_listener"/>
         <argument type="service" id="security.authentication.listener.guard.api"/>
         <argument type="service" id="security.authentication.listener.json.api"/>
+        <argument type="service" id="security.authentication.listener.basic.api"/>
         <argument type="service" id="security.authentication.listener.anonymous.api"/>
         <argument type="service" id="security.access_listener"/>
       </argument>
@@ -3552,11 +3579,11 @@
         <argument key="security.firewall.map.context.dev" type="service" id="security.firewall.map.context.dev"/>
       </argument>
     </service>
-    <service id=".security.request_matcher.Ud1TEPV" class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
-      <argument>^/api/login</argument>
+    <service id=".security.request_matcher.RHM.hIp" class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
+      <argument>^/api/register</argument>
     </service>
-    <service id=".security.request_matcher.cRNYaJ1" class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
-      <argument>^/api</argument>
+    <service id=".security.request_matcher.S7z3ELY" class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
+      <argument>^/api/depots</argument>
     </service>
     <service id="security.command.user_password_encoder" class="Symfony\Bundle\SecurityBundle\Command\UserPasswordEncoderCommand" public="false">
       <tag name="console.command" command="security:encode-password"/>

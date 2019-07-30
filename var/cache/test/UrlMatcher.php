@@ -8,9 +8,9 @@
 return [
     false, // $matchHost
     [ // $staticRoutes
-        '/partenaires' => [[['_route' => 'add_partenaire', '_controller' => 'App\\Controller\\PartenaireController::new'], null, ['POST' => 0], null, false, false, null]],
-        '/transaction' => [[['_route' => 'transaction', '_controller' => 'App\\Controller\\TransactionController::index'], null, null, null, false, false, null]],
-        '/depots' => [[['_route' => 'add_depot', '_controller' => 'App\\Controller\\TransactionController::addDepot'], null, ['POST' => 0], null, false, false, null]],
+        '/api/partenaires' => [[['_route' => 'add_partenaire', '_controller' => 'App\\Controller\\PartenaireController::new'], null, ['POST' => 0], null, false, false, null]],
+        '/api/transaction' => [[['_route' => 'transaction', '_controller' => 'App\\Controller\\TransactionController::index'], null, null, null, false, false, null]],
+        '/api/depots' => [[['_route' => 'add_depot', '_controller' => 'App\\Controller\\TransactionController::addDepot'], null, ['POST' => 0], null, false, false, null]],
         '/api/register' => [[['_route' => 'register', '_controller' => 'App\\Controller\\WariController::register'], null, ['POST' => 0], null, false, false, null]],
         '/api/login' => [
             [['_route' => 'login', '_controller' => 'App\\Controller\\WariController::login'], null, ['POST' => 0], null, false, false, null],
@@ -19,11 +19,11 @@ return [
     ],
     [ // $regexpList
         0 => '{^(?'
-                .'|/partenaire(?'
-                    .'|/([^/]++)(*:30)'
-                    .'|s/([^/]++)(*:47)'
-                .')'
                 .'|/api(?'
+                    .'|/partenaire(?'
+                        .'|/([^/]++)(*:37)'
+                        .'|s/([^/]++)(*:54)'
+                    .')'
                     .'|(?:/(index)(?:\\.([^/]++))?)?(*:90)'
                     .'|/(?'
                         .'|d(?'
@@ -59,8 +59,8 @@ return [
             .')/?$}sDu',
     ],
     [ // $dynamicRoutes
-        30 => [[['_route' => 'show_partenaire', '_controller' => 'App\\Controller\\PartenaireController::show'], ['id'], ['GET' => 0], null, false, true, null]],
-        47 => [[['_route' => 'update_partenaire', '_controller' => 'App\\Controller\\PartenaireController::update'], ['id'], ['PUT' => 0], null, false, true, null]],
+        37 => [[['_route' => 'show_partenaire', '_controller' => 'App\\Controller\\PartenaireController::show'], ['id'], ['GET' => 0], null, false, true, null]],
+        54 => [[['_route' => 'update_partenaire', '_controller' => 'App\\Controller\\PartenaireController::update'], ['id'], ['PUT' => 0], null, false, true, null]],
         90 => [[['_route' => 'api_entrypoint', '_controller' => 'api_platform.action.entrypoint', '_format' => '', '_api_respond' => 'true', 'index' => 'index'], ['index', '_format'], null, null, false, true, null]],
         123 => [[['_route' => 'api_doc', '_controller' => 'api_platform.action.documentation', '_format' => '', '_api_respond' => 'true'], ['_format'], null, null, false, true, null]],
         157 => [

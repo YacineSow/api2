@@ -14,12 +14,16 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-
+/**
+ * @Route("/api")
+ */
 
 class PartenaireController extends AbstractController
 {
     /**
      * @Route("/partenaire/{id}", name="show_partenaire", methods={"GET"})
+     * @IsGranted("ROLE_SUPER_ADMIN")
+
      */
     public function show(Partenaire $partenaire, PartenaireRepository $partenaireRepository, SerializerInterface $serializer)
     {
@@ -32,9 +36,12 @@ class PartenaireController extends AbstractController
         ]);
     }
 
-   
+  
+
     /**
      * @Route("/partenaires", name="add_partenaire", methods={"POST"})
+     * @IsGranted("ROLE_SUPER_ADMIN")
+
      */
     public function new(Request $request, SerializerInterface $serializer, EntityManagerInterface $entityManager)
     {
@@ -51,6 +58,8 @@ class PartenaireController extends AbstractController
 
        /**
      * @Route("/partenaires/{id}", name="update_partenaire", methods={"PUT"})
+     * @IsGranted("ROLE_SUPER_ADMIN")
+
      */
     public function update(Request $request, SerializerInterface $serializer, Partenaire $partenaire, ValidatorInterface $validator, EntityManagerInterface $entityManager)
     {
