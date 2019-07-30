@@ -6,30 +6,31 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class WariControllerTest extends WebTestCase
 {
-    // public function testRegister()
-    // {
+    public function testRegister()
+    {
 
 
-    //     $client = static::createClient([],[
-    //         'PHP_AUTH_USER'=>'Djiby',
-    //         'PHP_AUTH_PW'=>'sow'
-    //      ]);      
-    //      $crawler = $client->request('POST', '/api/register',[],[],
-    //     ['CONTENT_TYPE'=>"application/json"],
-    //     '{"username":"nabienne",
-    //         "password": "nabienne",
-    //         "prenom": "nabienne",
-    //         "nom": "diongue",
-    //         "telephone": "778596541",
-    //         "mail": "nabienne@gmail.com",
-    //         "adresse": "fass mbao",
-    //         "cni": "258963214589",
-    //         "statut": "debloquer",
-    //         "partenaire": "7"}');
-    //     $rep=$client->getResponse();
-    //     var_dump($rep);
-    //     $this->assertSame(201,$client->getResponse()->getStatusCode());
-    // }  
+        $client = static::createClient([],[
+            'PHP_AUTH_USER'=>'Djiby',
+            'PHP_AUTH_PW'=>'sow'
+         ]);      
+         $crawler = $client->request('POST', '/api/register',[],[],
+        ['CONTENT_TYPE'=>"application/json"],
+        '{"username":"nabienne",
+            "password": "nabienne",
+            "prenom": "nabienne",
+            "nom": "diongue",
+            "telephone": "778596541",
+            "mail": "nabienne@gmail.com",
+            "adresse": "fass mbao",
+            "cni": "258963214589",
+            "statut": "debloquer",
+            "partenaire": "7",
+            "profil": "user" }');
+        $rep=$client->getResponse();
+        var_dump($rep);
+        $this->assertSame(201,$client->getResponse()->getStatusCode());
+    }  
 
 
     public function testLogin()
