@@ -2,11 +2,12 @@
 
 namespace App\Entity;
 
+use App\Entity\Utilisateur;
+use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\Collection;
 use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
-use Doctrine\ORM\Mapping as ORM;
-use App\Entity\Utilisateur;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ApiResource()
@@ -18,51 +19,68 @@ class Partenaire
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     * @Groups({"list","show"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"list","show"})
+
      */
     private $entreprise;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"list","show"})
+
      */
     private $raisonSocial;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"list","show"})
+
      */
     private $ninea;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"list","show"})
+
      */
     private $adresse;
 
     /**
      * @ORM\Column(type="bigint")
+     * @Groups({"list","show"})
+
      */
     private $compte;
 
     /**
      * @ORM\Column(type="bigint")
+     * @Groups({"list","show"})
      */
     private $solde;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Utilisateur", mappedBy="partenaire")
+     * @Groups({"list","show"})
      */
     private $utilisateurs;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"list","show"})
+
      */
     private $statut;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Depot", mappedBy="idPartenaire")
+     * @Groups({"list","show"})
+
      */
     private $depots;
 

@@ -5,7 +5,6 @@
 return [
     '_twig_error_test' => [['code', '_format'], ['_controller' => 'twig.controller.preview_error::previewErrorPageAction', '_format' => 'html'], ['code' => '\\d+'], [['variable', '.', '[^/]++', '_format', true], ['variable', '/', '\\d+', 'code', true], ['text', '/_error']], [], []],
     'show_partenaire' => [['id'], ['_controller' => 'App\\Controller\\PartenaireController::show'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/api/partenaire']], [], []],
-    'list_partenaire' => [['page'], ['page' => '1', '_controller' => 'App\\Controller\\PartenaireController::index'], ['page' => '\\d+'], [['variable', '/', '\\d+', 'page', true], ['text', '/api/partenaires']], [], []],
     'add_partenaire' => [[], ['_controller' => 'App\\Controller\\PartenaireController::new'], [], [['text', '/api/partenaires']], [], []],
     'update_partenaire' => [['id'], ['_controller' => 'App\\Controller\\PartenaireController::update'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/api/partenaires']], [], []],
     'transaction' => [[], ['_controller' => 'App\\Controller\\TransactionController::index'], [], [['text', '/api/transaction']], [], []],

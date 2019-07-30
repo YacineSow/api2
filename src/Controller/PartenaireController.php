@@ -16,14 +16,16 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use FOS\RestBundle\Controller\FOSRestController;
 use FOS\RestBundle\Controller\Annotations as Rest;
 
-
 /**
  * @Route("/api")
  */
+
 class PartenaireController extends AbstractController
 {
     /**
      * @Route("/partenaire/{id}", name="show_partenaire", methods={"GET"})
+     * @IsGranted("ROLE_SUPER_ADMIN")
+
      */
     public function show(Partenaire $partenaire, PartenaireRepository $partenaireRepository, SerializerInterface $serializer)
     {
@@ -36,27 +38,12 @@ class PartenaireController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/partenaires/{page<\d+>?1}", name="list_partenaire", methods={"GET"})
-     */
-    public function index(Request $request, PartenaireRepository $partenaireRepository, SerializerInterface $serializer)
-    {
-        $page = $request->query->get('page');
-        if(is_null($page) || $page < 1) {
-            $page = 1;
-        }
-        $partenaires = $partenaireRepository->findAllPartenaires($page, getenv('LIMIT'));
-        $data = $serializer->serialize($partenaires, 'json', [
-            'groups' => ['list']
-        ]);
-        return new Response($data, 200, [
-            'Content-Type' => 'application/json'
-        ]);
-    }
+  
 
     /**
      * @Route("/partenaires", name="add_partenaire", methods={"POST"})
      * @IsGranted("ROLE_SUPER_ADMIN")
+
      */
     public function new(Request $request, SerializerInterface $serializer, EntityManagerInterface $entityManager)
     {
@@ -73,6 +60,8 @@ class PartenaireController extends AbstractController
 
        /**
      * @Route("/partenaires/{id}", name="update_partenaire", methods={"PUT"})
+     * @IsGranted("ROLE_SUPER_ADMIN")
+
      */
     public function update(Request $request, SerializerInterface $serializer, Partenaire $partenaire, ValidatorInterface $validator, EntityManagerInterface $entityManager)
     {

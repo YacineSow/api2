@@ -2416,12 +2416,36 @@
     </service>
     <service id="security.access_map" class="Symfony\Component\Security\Http\AccessMap" public="false">
       <call method="add">
-        <argument type="service" id=".security.request_matcher.Ud1TEPV"/>
+        <argument type="service" id=".security.request_matcher.RHM.hIp"/>
         <argument type="collection">
-          <argument>IS_AUTHENTICATED_ANONYMOUSLY</argument>
+          <argument>ROLE_ADMIN</argument>
         </argument>
         <argument>null</argument>
       </call>
+<<<<<<< HEAD
+=======
+      <call method="add">
+        <argument type="service" id=".security.request_matcher.RHM.hIp"/>
+        <argument type="collection">
+          <argument>ROLE_SUPER_ADMIN</argument>
+        </argument>
+        <argument>null</argument>
+      </call>
+      <call method="add">
+        <argument type="service" id=".security.request_matcher.S7z3ELY"/>
+        <argument type="collection">
+          <argument>ROLE_ADMIN</argument>
+        </argument>
+        <argument>null</argument>
+      </call>
+      <call method="add">
+        <argument type="service" id=".security.request_matcher.S7z3ELY"/>
+        <argument type="collection">
+          <argument>ROLE_USER</argument>
+        </argument>
+        <argument>null</argument>
+      </call>
+>>>>>>> 7a5f979830cc0eb0c770d812997e35b9080c1d4c
     </service>
     <service id="security.context_listener" class="Symfony\Component\Security\Http\Firewall\ContextListener" public="false">
       <tag name="monolog.logger" channel="security"/>
@@ -2777,6 +2801,7 @@
       <argument type="collection">
         <argument>guard</argument>
         <argument>json_login</argument>
+        <argument>http_basic</argument>
         <argument>anonymous</argument>
       </argument>
       <argument>null</argument>
@@ -2839,6 +2864,16 @@
         <argument type="service" id="security.authentication.session_strategy_noop"/>
       </call>
     </service>
+    <service id="security.authentication.listener.basic.api" class="Symfony\Component\Security\Http\Firewall\BasicAuthenticationListener" public="false">
+      <argument type="service" id="security.token_storage"/>
+      <argument type="service" id="security.authentication.manager"/>
+      <argument>api</argument>
+      <argument type="service" id="lexik_jwt_authentication.security.guard.jwt_token_authenticator"/>
+      <argument type="service" id="logger" on-invalid="null"/>
+      <call method="setSessionAuthenticationStrategy">
+        <argument type="service" id="security.authentication.session_strategy_noop"/>
+      </call>
+    </service>
     <service id="security.authentication.listener.anonymous.api" class="Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener" public="false">
       <argument type="service" id="security.token_storage"/>
       <argument>%container.build_hash%</argument>
@@ -2864,6 +2899,7 @@
         <argument type="service" id="security.channel_listener"/>
         <argument type="service" id="security.authentication.listener.guard.api"/>
         <argument type="service" id="security.authentication.listener.json.api"/>
+        <argument type="service" id="security.authentication.listener.basic.api"/>
         <argument type="service" id="security.authentication.listener.anonymous.api"/>
         <argument type="service" id="security.access_listener"/>
       </argument>
@@ -2878,9 +2914,15 @@
         <argument key="security.firewall.map.context.dev" type="service" id="security.firewall.map.context.dev"/>
       </argument>
     </service>
-    <service id=".security.request_matcher.Ud1TEPV" class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
-      <argument>^/api/login</argument>
+    <service id=".security.request_matcher.RHM.hIp" class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
+      <argument>^/api/register</argument>
     </service>
+<<<<<<< HEAD
+=======
+    <service id=".security.request_matcher.S7z3ELY" class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
+      <argument>^/api/depots</argument>
+    </service>
+>>>>>>> 7a5f979830cc0eb0c770d812997e35b9080c1d4c
     <service id="security.command.user_password_encoder" class="Symfony\Bundle\SecurityBundle\Command\UserPasswordEncoderCommand" public="false">
       <tag name="console.command" command="security:encode-password"/>
       <argument type="service" id="security.encoder_factory.generic"/>
@@ -4517,13 +4559,6 @@
         <argument key="serializer" type="service" id="serializer"/>
       </argument>
     </service>
-    <service id=".service_locator.eIEYWuf" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
-      <tag name="container.service_locator"/>
-      <argument type="collection">
-        <argument key="partenaireRepository" type="service" id="App\Repository\PartenaireRepository"/>
-        <argument key="serializer" type="service" id="serializer"/>
-      </argument>
-    </service>
     <service id=".service_locator.k22NER8" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
@@ -4553,6 +4588,7 @@
         <argument key="passwordEncoder" type="service" id="security.user_password_encoder.generic"/>
       </argument>
     </service>
+<<<<<<< HEAD
     <service id=".service_locator.XXcLaZm" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
@@ -4561,16 +4597,21 @@
       </argument>
     </service>
     <service id=".service_locator.615b5sM" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+=======
+    <service id=".service_locator.87ujLNE" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+>>>>>>> 7a5f979830cc0eb0c770d812997e35b9080c1d4c
       <tag name="container.service_locator"/>
       <argument type="collection">
-        <argument key="App\Controller\PartenaireController::index" type="service" id=".service_locator.eIEYWuf"/>
         <argument key="App\Controller\PartenaireController::new" type="service" id=".service_locator.k22NER8"/>
         <argument key="App\Controller\PartenaireController::show" type="service" id=".service_locator.iW_buO_"/>
         <argument key="App\Controller\PartenaireController::update" type="service" id=".service_locator.fDbIXxi"/>
         <argument key="App\Controller\TransactionController::addDepot" type="service" id=".service_locator.ZIsCxOI"/>
         <argument key="App\Controller\WariController::register" type="service" id=".service_locator.JBoVXlr"/>
+<<<<<<< HEAD
         <argument key="App\Controller\WariController::userBloquer" type="service" id=".service_locator.XXcLaZm"/>
         <argument key="App\Controller\PartenaireController:index" type="service" id=".service_locator.eIEYWuf"/>
+=======
+>>>>>>> 7a5f979830cc0eb0c770d812997e35b9080c1d4c
         <argument key="App\Controller\PartenaireController:new" type="service" id=".service_locator.k22NER8"/>
         <argument key="App\Controller\PartenaireController:show" type="service" id=".service_locator.iW_buO_"/>
         <argument key="App\Controller\PartenaireController:update" type="service" id=".service_locator.fDbIXxi"/>
@@ -4838,12 +4879,20 @@
       <argument type="service" id="security.token_storage"/>
     </service>
     <service id="debug.argument_resolver.service.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver" public="false">
+<<<<<<< HEAD
       <argument type="service" id=".service_locator.615b5sM"/>
+=======
+      <argument type="service" id=".service_locator.87ujLNE"/>
+>>>>>>> 7a5f979830cc0eb0c770d812997e35b9080c1d4c
     </service>
     <service id="debug.argument_resolver.default.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver" public="false"/>
     <service id="debug.argument_resolver.variadic.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\VariadicValueResolver" public="false"/>
     <service id="debug.argument_resolver.not_tagged_controller.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver" public="false">
+<<<<<<< HEAD
       <argument type="service" id=".service_locator.615b5sM"/>
+=======
+      <argument type="service" id=".service_locator.87ujLNE"/>
+>>>>>>> 7a5f979830cc0eb0c770d812997e35b9080c1d4c
     </service>
     <service id="api_platform.swagger.normalizer.api_gateway.inner" class="ApiPlatform\Core\Swagger\Serializer\DocumentationNormalizer" public="false">
       <argument type="service" id="api_platform.metadata.resource.metadata_factory.cached"/>
@@ -5187,7 +5236,11 @@
     <service id="lexik_jwt_authentication.encoder" alias="lexik_jwt_authentication.encoder.lcobucci" public="true"/>
     <service id="Lexik\Bundle\JWTAuthenticationBundle\Encoder\JWTEncoderInterface" alias="lexik_jwt_authentication.encoder.lcobucci"/>
     <service id="lexik_jwt_authentication.key_loader" alias="lexik_jwt_authentication.key_loader.raw" public="true"/>
+<<<<<<< HEAD
     <service id="argument_resolver.controller_locator" alias=".service_locator.615b5sM"/>
+=======
+    <service id="argument_resolver.controller_locator" alias=".service_locator.87ujLNE"/>
+>>>>>>> 7a5f979830cc0eb0c770d812997e35b9080c1d4c
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem" public="false"/>
     <service id="twig.loader" alias="twig.loader.native_filesystem"/>
     <service id="api_platform.name_converter" alias="serializer.name_converter.metadata_aware"/>

@@ -33,6 +33,10 @@ final class Versions
   'doctrine/persistence' => '1.1.1@3da7c9d125591ca83944f477e65ed3d7b4617c48',
   'doctrine/reflection' => 'v1.0.0@02538d3f95e88eb397a5f86274deb2c6175c2ab6',
   'fig/link-util' => '1.0.0@1a07821801a148be4add11ab0603e4af55a72fac',
+<<<<<<< HEAD
+=======
+  'friendsofsymfony/rest-bundle' => '2.5.0@a5fc73b84bdb2f0fdf58a717b322ceb6997f7bf3',
+>>>>>>> 7a5f979830cc0eb0c770d812997e35b9080c1d4c
   'jdorn/sql-formatter' => 'v1.2.17@64990d96e0959dff8e059dfcdc1af130728d92bc',
   'lcobucci/jwt' => '3.3.1@a11ec5f4b4d75d1fcd04e133dede4c317aac9e18',
   'lexik/jwt-authentication-bundle' => 'v2.6.3@c4c6b54acf5388c621d3e917c9cb15262c0501cf',
@@ -103,16 +107,24 @@ final class Versions
   'willdurand/negotiation' => 'v2.3.1@03436ededa67c6e83b9b12defac15384cb399dc9',
   'zendframework/zend-code' => '3.3.1@c21db169075c6ec4b342149f446e7b7b724f95eb',
   'zendframework/zend-eventmanager' => '3.2.1@a5e2583a211f73604691586b8406ff7296a946dd',
+<<<<<<< HEAD
   'friendsofsymfony/rest-bundle' => '2.5.0@a5fc73b84bdb2f0fdf58a717b322ceb6997f7bf3',
+=======
+>>>>>>> 7a5f979830cc0eb0c770d812997e35b9080c1d4c
   'squizlabs/php_codesniffer' => '3.4.2@b8a7362af1cc1aadb5bd36c3defc4dda2cf5f0a8',
   'symfony/browser-kit' => 'v4.3.3@a29dd02a1f3f81b9a15c7730cc3226718ddb55ca',
   'symfony/css-selector' => 'v4.3.3@105c98bb0c5d8635bea056135304bd8edcc42b4d',
   'symfony/dom-crawler' => 'v4.3.2@291397232a2eefb3347eaab9170409981eaad0e2',
   'symfony/process' => 'v4.3.2@856d35814cf287480465bb7a6c413bb7f5f5e69c',
+<<<<<<< HEAD
   'symfony/templating' => 'v4.3.2@b0c5295d09dfbeae3bd3f52990468587ed82785c',
   'symfony/test-pack' => 'v1.0.6@ff87e800a67d06c423389f77b8209bc9dc469def',
   'symfony/web-server-bundle' => 'v4.3.3@a5391b6a4ac78d518dd3f0ee5f40bcc9a7ee6fe7',
   'willdurand/jsonp-callback-validator' => 'v1.1.0@1a7d388bb521959e612ef50c5c7b1691b097e909',
+=======
+  'symfony/test-pack' => 'v1.0.6@ff87e800a67d06c423389f77b8209bc9dc469def',
+  'symfony/web-server-bundle' => 'v4.3.3@a5391b6a4ac78d518dd3f0ee5f40bcc9a7ee6fe7',
+>>>>>>> 7a5f979830cc0eb0c770d812997e35b9080c1d4c
   'paragonie/random_compat' => '2.*@d9dfa3793836ac158baa0ce02ec0868307a1e829',
   'symfony/polyfill-ctype' => '*@d9dfa3793836ac158baa0ce02ec0868307a1e829',
   'symfony/polyfill-iconv' => '*@d9dfa3793836ac158baa0ce02ec0868307a1e829',
