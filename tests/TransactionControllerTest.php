@@ -13,8 +13,8 @@ class TransactionControllerTest extends WebTestCase
     public function testAddDepot()
     {
         $client = static::createClient([],[
-            'PHP_AUTH_USER'=>'Djiby',
-            'PHP_AUTH_PW'=>'sow'
+            'PHP_AUTH_USER'=>'by',
+            'PHP_AUTH_PW'=>'sowpoulo'
         ]);            $crawler = $client->request('POST', '/api/depots',[],[],
             ['CONTENT_TYPE'=>"application/json"],
             '{"montant":"500000","idPartenaire": "4"}');

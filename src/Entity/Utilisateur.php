@@ -73,8 +73,7 @@ class Utilisateur implements UserInterface
     private $partenaire;
 
     /**
-<<<<<<< HEAD
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $statut;
 
@@ -83,12 +82,6 @@ class Utilisateur implements UserInterface
      */
     private $profil;
 
-=======
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $statut;
-
->>>>>>> 7a5f979830cc0eb0c770d812997e35b9080c1d4c
   
 
     public function getId(): ?int
@@ -253,18 +246,13 @@ class Utilisateur implements UserInterface
         return $this->statut;
     }
 
-<<<<<<< HEAD
-    public function setStatut(string $statut): self
-=======
     public function setStatut(?string $statut): self
->>>>>>> 7a5f979830cc0eb0c770d812997e35b9080c1d4c
     {
         $this->statut = $statut;
 
         return $this;
     }
 
-<<<<<<< HEAD
     public function getProfil(): ?string
     {
         return $this->profil;
@@ -277,7 +265,5 @@ class Utilisateur implements UserInterface
         return $this;
     }
 
-=======
->>>>>>> 7a5f979830cc0eb0c770d812997e35b9080c1d4c
   
 }

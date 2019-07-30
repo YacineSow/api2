@@ -35,10 +35,6 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-<<<<<<< HEAD
-        - { path: ^/api/login , roles: IS_AUTHENTICATED_ANONYMOUSLY }        
-        #- { path: ^/api, roles: IS_AUTHENTICATED_FULLY }
-=======
         #- { path: ^/api/login , roles: IS_AUTHENTICATED_ANONYMOUSLY }        
         #- { path: ^/api, roles: IS_AUTHENTICATED_FULLY }
         - { path: ^/api/register, roles: ROLE_ADMIN }
@@ -46,5 +42,4 @@ security:
         - { path: ^/api/depots, roles: ROLE_ADMIN}
         - { path: ^/api/depots, roles: ROLE_USER}
 
->>>>>>> 7a5f979830cc0eb0c770d812997e35b9080c1d4c
     
