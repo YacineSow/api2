@@ -72,6 +72,16 @@ class Utilisateur implements UserInterface
      */
     private $partenaire;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $statut;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $profil;
+
   
 
     public function getId(): ?int
@@ -227,6 +237,30 @@ class Utilisateur implements UserInterface
     public function setPartenaire(?partenaire $partenaire): self
     {
         $this->partenaire = $partenaire;
+
+        return $this;
+    }
+
+    public function getStatut(): ?string
+    {
+        return $this->statut;
+    }
+
+    public function setStatut(string $statut): self
+    {
+        $this->statut = $statut;
+
+        return $this;
+    }
+
+    public function getProfil(): ?string
+    {
+        return $this->profil;
+    }
+
+    public function setProfil(string $profil): self
+    {
+        $this->profil = $profil;
 
         return $this;
     }

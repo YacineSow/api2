@@ -3,14 +3,17 @@
 namespace App\Controller;
 
 use App\Entity\Partenaire;
-use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use App\Entity\Utilisateur;
+use Doctrine\ORM\EntityManagerInterface;
+use App\Repository\UtilisateurRepository;
+use App\Repository\PartenaireRepository;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 
 /**
@@ -20,9 +23,7 @@ class WariController extends AbstractController
 {
     /**
      * @Route("/register", name="register", methods={"POST"})
-        * @IsGranted("ROLE_ADMIN")
-
-        
+        * @IsGranted("ROLE_ADMIN") 
      */
     public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder, EntityManagerInterface $entityManager)
     {
@@ -31,19 +32,32 @@ class WariController extends AbstractController
             $user = new Utilisateur();
             $user->setUsername($values->username);
             $user->setPassword($passwordEncoder->encodePassword($user, $values->password));
-            $user->setRoles(['ROLE_USER']);
+            $user->setProfil($values->profil);
+            $profil=$user->getProfil();
+            $role=[];
+            if($profil == "admin"){
+              $role=["ROLE_ADMIN"];  
+            }
+            elseif($profil == "superadmin"){
+                $role=["ROLE_SUPER_ADMIN"];
+            }
+            elseif($profil == "user"){
+                $role=["ROLE_USER"];
+            }
+            $user->setRoles($role);
             $user->setPrenom($values->prenom);
             $user->setNom($values->nom);
             $user->setTelephone($values->telephone);
             $user->setMail($values->mail);
             $user->setAdresse($values->adresse);
             $user->setCni($values->cni);
+            $user->setStatut($values->statut);
             
+
             $repo=$this->getDoctrine()->getRepository(Partenaire::class);
             $partenaires=$repo->find($values->partenaire);
             $user->setPartenaire($partenaires);
-
-
+            $profil=$values->profil;
 
 
             $entityManager->persist($user);
@@ -76,6 +90,39 @@ class WariController extends AbstractController
         ]);
     }
 
+    /**
+     * @Route("/users/bloquer", name="userBlock", methods={"GET","POST"})
+     * @Route("/users/debloquer", name="userDeblock", methods={"GET","POST"})
+     */
 
+    public function userBloquer(Request $request, UtilisateurRepository $userRepo,EntityManagerInterface $entityManager): Response
+    {
+        $values = json_decode($request->getContent());
+        $user=$userRepo->findOneByUsername($values->username);
+        echo $user->getStatut();
+        if($user->getStatut()=="bloquer"){
+            if($user->getProfil()=="admin"){
+                $user->setRoles(["ROLE_ADMIN"]);
+            }
+            elseif($user->getProfil()=="superadmin"){
+                $user->setRoles(["ROLE_SUPER_ADMIN"]);
+            }
+            elseif($user->getProfil()=="user"){
+                $user->setRoles(["ROLE_USER"]);
+            }
+            $user->setStatut("debloquer");
+        }
+        else{
+            $user->setStatut("bloquer");
+            $user->setRoles(["ROLE_USERLOCK"]);
+        }
+
+        $entityManager->flush();
+        $data = [
+            'status' => 200,
+            'message' => 'utilisateur bloqué'
+        ];
+        return new JsonResponse($data);
+    }
 
 }
