@@ -77,12 +77,10 @@ class Utilisateur implements UserInterface
      */
     private $statut;
 
-    /**
-     * @ORM\Column(type="string", length=255)
+   /**
+     * @ORM\Column(type="string", length=255, nullable=false)
      */
     private $profil;
-
-  
 
     public function getId(): ?int
     {
