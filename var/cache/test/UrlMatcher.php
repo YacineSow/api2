@@ -16,6 +16,8 @@ return [
             [['_route' => 'login', '_controller' => 'App\\Controller\\WariController::login'], null, ['POST' => 0], null, false, false, null],
             [['_route' => 'api_login_check'], null, null, null, false, false, null],
         ],
+        '/api/users/bloquer' => [[['_route' => 'userBlock', '_controller' => 'App\\Controller\\WariController::userBloquer'], null, ['GET' => 0, 'POST' => 1], null, false, false, null]],
+        '/api/users/debloquer' => [[['_route' => 'userDeblock', '_controller' => 'App\\Controller\\WariController::userBloquer'], null, ['GET' => 0, 'POST' => 1], null, false, false, null]],
     ],
     [ // $regexpList
         0 => '{^(?'

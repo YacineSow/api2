@@ -82,7 +82,7 @@
       <parameter key="cookie_samesite">lax</parameter>
       <parameter key="gc_probability">1</parameter>
     </parameter>
-    <parameter key="session.save_path">/home/mbacke/Documents/symfony/ApiWari/var/cache/test/sessions</parameter>
+    <parameter key="session.save_path">/var/lib/php/sessions</parameter>
     <parameter key="session.metadata.update_threshold">0</parameter>
     <parameter key="form.type_extension.csrf.enabled">true</parameter>
     <parameter key="form.type_extension.csrf.field_name">_token</parameter>
@@ -120,9 +120,7 @@
       <parameter key="^/" type="collection"/>
     </parameter>
     <parameter key="nelmio_cors.defaults" type="collection">
-      <parameter key="allow_origin" type="collection">
-        <parameter>%env(CORS_ALLOW_ORIGIN)%</parameter>
-      </parameter>
+      <parameter key="allow_origin" type="collection"/>
       <parameter key="allow_credentials">false</parameter>
       <parameter key="allow_headers" type="collection">
         <parameter>content-type</parameter>
@@ -496,16 +494,44 @@
     </service>
     <service id="services_resetter" class="Symfony\Component\HttpKernel\DependencyInjection\ServicesResetter" public="true">
       <argument type="iterator">
+        <argument key="cache.app" type="service" id="cache.app" on-invalid="ignore_uninitialized"/>
+        <argument key="cache.system" type="service" id="cache.system" on-invalid="ignore_uninitialized"/>
+        <argument key="cache.validator" type="service" id="cache.validator" on-invalid="ignore_uninitialized"/>
+        <argument key="cache.serializer" type="service" id="cache.serializer" on-invalid="ignore_uninitialized"/>
+        <argument key="cache.annotations" type="service" id="cache.annotations" on-invalid="ignore_uninitialized"/>
+        <argument key="cache.property_info" type="service" id="cache.property_info" on-invalid="ignore_uninitialized"/>
+        <argument key="cache.messenger.restart_workers_signal" type="service" id="cache.messenger.restart_workers_signal" on-invalid="ignore_uninitialized"/>
         <argument key="form.choice_list_factory.cached" type="service" id="form.choice_list_factory.cached" on-invalid="ignore_uninitialized"/>
         <argument key="debug.stopwatch" type="service" id="debug.stopwatch" on-invalid="ignore_uninitialized"/>
+        <argument key="debug.event_dispatcher" type="service" id="debug.event_dispatcher" on-invalid="ignore_uninitialized"/>
         <argument key="security.token_storage" type="service" id="security.token_storage" on-invalid="ignore_uninitialized"/>
+        <argument key="cache.security_expression_language" type="service" id="cache.security_expression_language" on-invalid="ignore_uninitialized"/>
         <argument key="form.type.entity" type="service" id="form.type.entity" on-invalid="ignore_uninitialized"/>
+        <argument key="api_platform.cache.route_name_resolver" type="service" id="api_platform.cache.route_name_resolver" on-invalid="ignore_uninitialized"/>
+        <argument key="api_platform.cache.identifiers_extractor" type="service" id="api_platform.cache.identifiers_extractor" on-invalid="ignore_uninitialized"/>
+        <argument key="api_platform.cache.subresource_operation_factory" type="service" id="api_platform.cache.subresource_operation_factory" on-invalid="ignore_uninitialized"/>
+        <argument key="api_platform.cache.metadata.resource" type="service" id="api_platform.cache.metadata.resource" on-invalid="ignore_uninitialized"/>
+        <argument key="api_platform.cache.metadata.property" type="service" id="api_platform.cache.metadata.property" on-invalid="ignore_uninitialized"/>
       </argument>
       <argument type="collection">
+        <argument key="cache.app">reset</argument>
+        <argument key="cache.system">reset</argument>
+        <argument key="cache.validator">reset</argument>
+        <argument key="cache.serializer">reset</argument>
+        <argument key="cache.annotations">reset</argument>
+        <argument key="cache.property_info">reset</argument>
+        <argument key="cache.messenger.restart_workers_signal">reset</argument>
         <argument key="form.choice_list_factory.cached">reset</argument>
         <argument key="debug.stopwatch">reset</argument>
+        <argument key="debug.event_dispatcher">reset</argument>
         <argument key="security.token_storage">setToken</argument>
+        <argument key="cache.security_expression_language">reset</argument>
         <argument key="form.type.entity">reset</argument>
+        <argument key="api_platform.cache.route_name_resolver">reset</argument>
+        <argument key="api_platform.cache.identifiers_extractor">reset</argument>
+        <argument key="api_platform.cache.subresource_operation_factory">reset</argument>
+        <argument key="api_platform.cache.metadata.resource">reset</argument>
+        <argument key="api_platform.cache.metadata.property">reset</argument>
       </argument>
     </service>
     <service id="reverse_container" class="Symfony\Component\DependencyInjection\ReverseContainer" public="false">
@@ -690,6 +716,7 @@
     </service>
     <service id="cache.app" class="Symfony\Component\Cache\Adapter\FilesystemAdapter" public="true">
       <tag name="cache.pool"/>
+      <tag name="kernel.reset" method="reset"/>
       <argument>NAS0CdWm22</argument>
       <argument>0</argument>
       <argument>/home/mbacke/Documents/symfony/ApiWari/var/cache/test/pools</argument>
@@ -707,6 +734,7 @@
     </service>
     <service id="cache.system" class="Symfony\Component\Cache\Adapter\AdapterInterface" public="true">
       <tag name="cache.pool"/>
+      <tag name="kernel.reset" method="reset"/>
       <argument>J-74Ro3g73</argument>
       <argument>0</argument>
       <argument>%container.build_id%</argument>
@@ -716,6 +744,7 @@
     </service>
     <service id="cache.validator" class="Symfony\Component\Cache\Adapter\AdapterInterface" public="false">
       <tag name="cache.pool"/>
+      <tag name="kernel.reset" method="reset"/>
       <argument>GcnNCt9Koa</argument>
       <argument>0</argument>
       <argument>%container.build_id%</argument>
@@ -725,6 +754,7 @@
     </service>
     <service id="cache.serializer" class="Symfony\Component\Cache\Adapter\AdapterInterface" public="false">
       <tag name="cache.pool"/>
+      <tag name="kernel.reset" method="reset"/>
       <argument>nOnnAR1AZb</argument>
       <argument>0</argument>
       <argument>%container.build_id%</argument>
@@ -734,6 +764,7 @@
     </service>
     <service id="cache.annotations" class="Symfony\Component\Cache\Adapter\AdapterInterface" public="false">
       <tag name="cache.pool"/>
+      <tag name="kernel.reset" method="reset"/>
       <argument>9DL0tDMlHo</argument>
       <argument>0</argument>
       <argument>%container.build_id%</argument>
@@ -743,6 +774,7 @@
     </service>
     <service id="cache.property_info" class="Symfony\Component\Cache\Adapter\AdapterInterface" public="false">
       <tag name="cache.pool"/>
+      <tag name="kernel.reset" method="reset"/>
       <argument>sCljpT5wjf</argument>
       <argument>0</argument>
       <argument>%container.build_id%</argument>
@@ -752,6 +784,7 @@
     </service>
     <service id="cache.messenger.restart_workers_signal" class="Symfony\Component\Cache\Adapter\FilesystemAdapter" public="false">
       <tag name="cache.pool"/>
+      <tag name="kernel.reset" method="reset"/>
       <argument>24lo7wcI62</argument>
       <argument>0</argument>
       <argument>/home/mbacke/Documents/symfony/ApiWari/var/cache/test/pools</argument>
@@ -761,7 +794,7 @@
       </call>
     </service>
     <service id="cache.adapter.system" class="Symfony\Component\Cache\Adapter\AdapterInterface" public="false" abstract="true">
-      <tag name="cache.pool" clearer="cache.system_clearer"/>
+      <tag name="cache.pool" clearer="cache.system_clearer" reset="reset"/>
       <tag name="monolog.logger" channel="cache"/>
       <argument></argument>
       <argument>0</argument>
@@ -771,7 +804,7 @@
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
     </service>
     <service id="cache.adapter.apcu" class="Symfony\Component\Cache\Adapter\ApcuAdapter" public="false" abstract="true">
-      <tag name="cache.pool" clearer="cache.default_clearer"/>
+      <tag name="cache.pool" clearer="cache.default_clearer" reset="reset"/>
       <tag name="monolog.logger" channel="cache"/>
       <argument></argument>
       <argument>0</argument>
@@ -781,7 +814,7 @@
       </call>
     </service>
     <service id="cache.adapter.doctrine" class="Symfony\Component\Cache\Adapter\DoctrineAdapter" public="false" abstract="true">
-      <tag name="cache.pool" provider="cache.default_doctrine_provider" clearer="cache.default_clearer"/>
+      <tag name="cache.pool" provider="cache.default_doctrine_provider" clearer="cache.default_clearer" reset="reset"/>
       <tag name="monolog.logger" channel="cache"/>
       <argument></argument>
       <argument></argument>
@@ -791,7 +824,7 @@
       </call>
     </service>
     <service id="cache.adapter.filesystem" class="Symfony\Component\Cache\Adapter\FilesystemAdapter" public="false" abstract="true">
-      <tag name="cache.pool" clearer="cache.default_clearer"/>
+      <tag name="cache.pool" clearer="cache.default_clearer" reset="reset"/>
       <tag name="monolog.logger" channel="cache"/>
       <argument></argument>
       <argument>0</argument>
@@ -802,13 +835,13 @@
       </call>
     </service>
     <service id="cache.adapter.psr6" class="Symfony\Component\Cache\Adapter\ProxyAdapter" public="false" abstract="true">
-      <tag name="cache.pool" provider="cache.default_psr6_provider" clearer="cache.default_clearer"/>
+      <tag name="cache.pool" provider="cache.default_psr6_provider" clearer="cache.default_clearer" reset="reset"/>
       <argument></argument>
       <argument></argument>
       <argument>0</argument>
     </service>
     <service id="cache.adapter.redis" class="Symfony\Component\Cache\Adapter\RedisAdapter" public="false" abstract="true">
-      <tag name="cache.pool" provider="cache.default_redis_provider" clearer="cache.default_clearer"/>
+      <tag name="cache.pool" provider="cache.default_redis_provider" clearer="cache.default_clearer" reset="reset"/>
       <tag name="monolog.logger" channel="cache"/>
       <argument></argument>
       <argument></argument>
@@ -842,7 +875,7 @@
       </call>
     </service>
     <service id="cache.adapter.array" class="Symfony\Component\Cache\Adapter\ArrayAdapter" public="false" abstract="true">
-      <tag name="cache.pool" clearer="cache.default_clearer"/>
+      <tag name="cache.pool" clearer="cache.default_clearer" reset="reset"/>
       <tag name="monolog.logger" channel="cache"/>
       <argument>0</argument>
       <call method="setLogger">
@@ -1189,7 +1222,7 @@
         <argument key="api_platform.validator" type="service" id="api_platform.validator" on-invalid="ignore_uninitialized"/>
         <argument key="argument_metadata_factory" type="service" id="argument_metadata_factory" on-invalid="ignore_uninitialized"/>
         <argument key="argument_resolver" type="service" id="debug.argument_resolver" on-invalid="ignore_uninitialized"/>
-        <argument key="argument_resolver.controller_locator" type="service" id=".service_locator.87ujLNE" on-invalid="ignore_uninitialized"/>
+        <argument key="argument_resolver.controller_locator" type="service" id=".service_locator.XCUNPWL" on-invalid="ignore_uninitialized"/>
         <argument key="argument_resolver.default" type="service" id="debug.argument_resolver.default" on-invalid="ignore_uninitialized"/>
         <argument key="argument_resolver.not_tagged_controller" type="service" id="debug.argument_resolver.not_tagged_controller" on-invalid="ignore_uninitialized"/>
         <argument key="argument_resolver.request" type="service" id="debug.argument_resolver.request" on-invalid="ignore_uninitialized"/>
@@ -1570,7 +1603,7 @@
       </argument>
     </service>
     <service id=".1_NativeFileSessionHandler~cLLCeWH" class="Symfony\Component\HttpFoundation\Session\Storage\Handler\NativeFileSessionHandler" public="false">
-      <argument>/home/mbacke/Documents/symfony/ApiWari/var/cache/test/sessions</argument>
+      <argument>/var/lib/php/sessions</argument>
     </service>
     <service id="session" class="Symfony\Component\HttpFoundation\Session\Session" public="true">
       <argument type="service" id="session.storage.mock_file"/>
@@ -1852,6 +1885,7 @@
     <service id="debug.event_dispatcher" class="Symfony\Component\HttpKernel\Debug\TraceableEventDispatcher" public="false">
       <tag name="container.hot_path"/>
       <tag name="monolog.logger" channel="event"/>
+      <tag name="kernel.reset" method="reset"/>
       <argument type="service" id="debug.event_dispatcher.inner"/>
       <argument type="service" id="debug.stopwatch"/>
       <argument type="service" id="logger" on-invalid="null"/>
@@ -3054,6 +3088,7 @@
     </service>
     <service id="cache.security_expression_language" class="Symfony\Component\Cache\Adapter\AdapterInterface" public="false">
       <tag name="cache.pool"/>
+      <tag name="kernel.reset" method="reset"/>
       <argument>I3Xpa0YHq1</argument>
       <argument>0</argument>
       <argument>%container.build_id%</argument>
@@ -4171,6 +4206,7 @@
     </service>
     <service id="api_platform.cache.route_name_resolver" class="Symfony\Component\Cache\Adapter\AdapterInterface" public="false">
       <tag name="cache.pool"/>
+      <tag name="kernel.reset" method="reset"/>
       <argument>irtoJex-ct</argument>
       <argument>0</argument>
       <argument>%container.build_id%</argument>
@@ -4180,6 +4216,7 @@
     </service>
     <service id="api_platform.cache.identifiers_extractor" class="Symfony\Component\Cache\Adapter\AdapterInterface" public="false">
       <tag name="cache.pool"/>
+      <tag name="kernel.reset" method="reset"/>
       <argument>VJ+UkMUSvu</argument>
       <argument>0</argument>
       <argument>%container.build_id%</argument>
@@ -4189,6 +4226,7 @@
     </service>
     <service id="api_platform.cache.subresource_operation_factory" class="Symfony\Component\Cache\Adapter\AdapterInterface" public="false">
       <tag name="cache.pool"/>
+      <tag name="kernel.reset" method="reset"/>
       <argument>FedN29CKbw</argument>
       <argument>0</argument>
       <argument>%container.build_id%</argument>
@@ -4279,6 +4317,7 @@
     </service>
     <service id="api_platform.cache.metadata.resource" class="Symfony\Component\Cache\Adapter\AdapterInterface" public="false">
       <tag name="cache.pool"/>
+      <tag name="kernel.reset" method="reset"/>
       <argument>A+9+KKHbmq</argument>
       <argument>0</argument>
       <argument>%container.build_id%</argument>
@@ -4288,6 +4327,7 @@
     </service>
     <service id="api_platform.cache.metadata.property" class="Symfony\Component\Cache\Adapter\AdapterInterface" public="false">
       <tag name="cache.pool"/>
+      <tag name="kernel.reset" method="reset"/>
       <argument>kFC3BcC5+C</argument>
       <argument>0</argument>
       <argument>%container.build_id%</argument>
@@ -4942,7 +4982,14 @@
         <argument key="passwordEncoder" type="service" id="security.user_password_encoder.generic"/>
       </argument>
     </service>
-    <service id=".service_locator.87ujLNE" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id=".service_locator.XXcLaZm" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="entityManager" type="service" id="doctrine.orm.default_entity_manager"/>
+        <argument key="userRepo" type="service" id="App\Repository\UtilisateurRepository"/>
+      </argument>
+    </service>
+    <service id=".service_locator.XCUNPWL" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Controller\PartenaireController::new" type="service" id=".service_locator.k22NER8"/>
@@ -4950,11 +4997,13 @@
         <argument key="App\Controller\PartenaireController::update" type="service" id=".service_locator.fDbIXxi"/>
         <argument key="App\Controller\TransactionController::addDepot" type="service" id=".service_locator.ZIsCxOI"/>
         <argument key="App\Controller\WariController::register" type="service" id=".service_locator.JBoVXlr"/>
+        <argument key="App\Controller\WariController::userBloquer" type="service" id=".service_locator.XXcLaZm"/>
         <argument key="App\Controller\PartenaireController:new" type="service" id=".service_locator.k22NER8"/>
         <argument key="App\Controller\PartenaireController:show" type="service" id=".service_locator.iW_buO_"/>
         <argument key="App\Controller\PartenaireController:update" type="service" id=".service_locator.fDbIXxi"/>
         <argument key="App\Controller\TransactionController:addDepot" type="service" id=".service_locator.ZIsCxOI"/>
         <argument key="App\Controller\WariController:register" type="service" id=".service_locator.JBoVXlr"/>
+        <argument key="App\Controller\WariController:userBloquer" type="service" id=".service_locator.XXcLaZm"/>
       </argument>
     </service>
     <service id=".service_locator.LtnrEkg" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
@@ -5222,12 +5271,12 @@
       <argument type="service" id="security.token_storage"/>
     </service>
     <service id="debug.argument_resolver.service.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver" public="false">
-      <argument type="service" id=".service_locator.87ujLNE"/>
+      <argument type="service" id=".service_locator.XCUNPWL"/>
     </service>
     <service id="debug.argument_resolver.default.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver" public="false"/>
     <service id="debug.argument_resolver.variadic.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\VariadicValueResolver" public="false"/>
     <service id="debug.argument_resolver.not_tagged_controller.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver" public="false">
-      <argument type="service" id=".service_locator.87ujLNE"/>
+      <argument type="service" id=".service_locator.XCUNPWL"/>
     </service>
     <service id="api_platform.swagger.normalizer.api_gateway.inner" class="ApiPlatform\Core\Swagger\Serializer\DocumentationNormalizer" public="false">
       <argument type="service" id="api_platform.metadata.resource.metadata_factory.cached"/>
@@ -5527,7 +5576,7 @@
     <service id="lexik_jwt_authentication.encoder" alias="lexik_jwt_authentication.encoder.lcobucci" public="true"/>
     <service id="Lexik\Bundle\JWTAuthenticationBundle\Encoder\JWTEncoderInterface" alias="lexik_jwt_authentication.encoder.lcobucci"/>
     <service id="lexik_jwt_authentication.key_loader" alias="lexik_jwt_authentication.key_loader.raw" public="true"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.87ujLNE"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.XCUNPWL"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem" public="false"/>
     <service id="twig.loader" alias="twig.loader.native_filesystem"/>
     <service id="api_platform.name_converter" alias="serializer.name_converter.metadata_aware"/>

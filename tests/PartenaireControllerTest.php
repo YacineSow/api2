@@ -32,7 +32,8 @@ class PartenaireControllerTest extends WebTestCase
         $client = static::createClient([],[
             'PHP_AUTH_USER'=>'KabirouWari',
             'PHP_AUTH_PW'=>'123wari'
-        ]);        $client->request('GET', '/api/partenaires/11');
+        ]);       
+        $crawler =$client->request('GET', '/api/partenaires/11');
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
     }
 
