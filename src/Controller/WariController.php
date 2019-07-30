@@ -119,7 +119,7 @@ class WariController extends AbstractController
         $entityManager->flush();
         $data = [
             'status' => 200,
-            'message' => 'utilisateur bloqué'
+            'message' => 'utilisateur a changé de statut (bloqué/débloqué)'
         ];
         return new JsonResponse($data);
     }

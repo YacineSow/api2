@@ -9,8 +9,8 @@ class PartenaireControllerTest extends WebTestCase
     public function testNew()
     {
         $client = static::createClient([],[
-            'PHP_AUTH_USER'=>'kabi',
-            'PHP_AUTH_PW'=>'rou'
+            'PHP_AUTH_USER'=>'kabirouWari',
+            'PHP_AUTH_PW'=>'123wari'
          ]);      
          $crawler = $client->request('POST', '/api/partenaires',[],[],
         ['CONTENT_TYPE'=>"application/json"],
@@ -30,8 +30,8 @@ class PartenaireControllerTest extends WebTestCase
     public function testShow()
     {
         $client = static::createClient([],[
-            'PHP_AUTH_USER'=>'kabi',
-            'PHP_AUTH_PW'=>'rou'
+            'PHP_AUTH_USER'=>'kabirouWari',
+            'PHP_AUTH_PW'=>'123wari'
         ]);        $client->request('GET', '/api/partenaires/9');
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
     }
@@ -41,8 +41,8 @@ class PartenaireControllerTest extends WebTestCase
 
 
         $client = static::createClient([],[
-            'PHP_AUTH_USER'=>'kabi',
-            'PHP_AUTH_PW'=>'rou'
+            'PHP_AUTH_USER'=>'kabirouWari',
+            'PHP_AUTH_PW'=>'123wari'
         ]);
 
             $crawler = $client->request('PUT', '/api/partenaires/8',[],[],

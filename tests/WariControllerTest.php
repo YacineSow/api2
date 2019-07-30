@@ -11,8 +11,8 @@ class WariControllerTest extends WebTestCase
 
 
         $client = static::createClient([],[
-            'PHP_AUTH_USER'=>'by',
-            'PHP_AUTH_PW'=>'sowpoulo'
+            'PHP_AUTH_USER'=>'Djiby',
+            'PHP_AUTH_PW'=>'sow'
          ]);      
          $crawler = $client->request('POST', '/api/register',[],[],
         ['CONTENT_TYPE'=>"application/json"],
@@ -38,13 +38,13 @@ class WariControllerTest extends WebTestCase
 
 
         $client = static::createClient([],[
-            'PHP_AUTH_USER'=>'mbacké',
-            'PHP_AUTH_PW'=>'var'
+            'PHP_AUTH_USER'=>'mbacke',
+            'PHP_AUTH_PW'=>'mbaye'
          ]);      
          $crawler = $client->request('POST', '/api/login',[],[],
         ['CONTENT_TYPE'=>"application/json"],
-        '{"username":"mbacké",
-            "password": "var"}');
+        '{"username":"mbacke",
+            "password": "mbaye"}');
         $rep=$client->getResponse();
         var_dump($rep);
         $this->assertSame(200,$client->getResponse()->getStatusCode());
